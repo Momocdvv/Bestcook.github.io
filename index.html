@@ -21,6 +21,7 @@
             --cream: #FDF6E3;
             --white: #FFFFFF;
             --dark: #1A1A1A;
+            --red: #E63946;
         }
 
         body {
@@ -158,6 +159,7 @@
             color: var(--orange);
             margin-bottom: 2rem;
             display: block;
+            text-decoration: none;
         }
 
         .cta-button {
@@ -206,6 +208,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         /* Hours Banner */
         .hours-banner {
             background: var(--orange);
@@ -214,6 +221,136 @@
             padding: 1rem;
             font-weight: 600;
             font-size: 1.1rem;
+            margin-top: 70px;
+        }
+
+        /* NOUVEAUTÉS SECTION */
+        .nouveautes {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--green) 100%);
+            padding: 5rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nouveautes::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(244, 162, 97, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nouveautes-badge {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .nouveautes-title {
+            color: var(--white);
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nouveautes-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--orange);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .nouveautes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nouveaute-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            position: relative;
+            border: 3px solid var(--orange);
+        }
+
+        .nouveaute-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .nouveaute-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--red);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            z-index: 10;
+            animation: pulse 1.5s infinite;
+        }
+
+        .nouveaute-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: var(--cream);
+        }
+
+        .nouveaute-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .nouveaute-content h3 {
+            color: var(--dark-green);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .nouveaute-content p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .size-label {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--dark-green);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin: 0.2rem;
         }
 
         /* Section Styles */
@@ -315,6 +452,7 @@
             display: flex;
             gap: 0.5rem;
             margin-top: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .size-badge {
@@ -627,6 +765,12 @@
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .nouveautes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -647,6 +791,14 @@
 
             .hero-phone {
                 font-size: 1.5rem;
+            }
+
+            .nouveautes-title {
+                font-size: 2rem;
+            }
+
+            .nouveautes-grid {
+                grid-template-columns: 1fr;
             }
 
             .about-grid,
@@ -681,7 +833,7 @@
 
         /* Special Badges */
         .badge-new {
-            background: var(--dark-orange);
+            background: var(--red);
             color: var(--white);
         }
 
@@ -701,9 +853,9 @@
         </a>
         <ul class="nav-links">
             <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#nouveautes">Nouveautés</a></li>
             <li><a href="#menu">Menu</a></li>
             <li><a href="#about">À propos</a></li>
-            <li><a href="#galerie">Galerie</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="mobile-menu">
@@ -714,7 +866,7 @@
     </nav>
 
     <!-- Hours Banner -->
-    <div class="hours-banner" style="margin-top: 70px;">
+    <div class="hours-banner">
         📍 145 Avenue de Saint Ouen, 75017 Paris | 📞 01.40.79.19.23 | 🕐 Ouvert tous les jours de 11h00 à minuit
     </div>
 
@@ -733,15 +885,118 @@
                 📍 145 Avenue de Saint Ouen, 75017 Paris
             </div>
             <a href="tel:0140791923" class="hero-phone">01.40.79.19.23</a>
-            <a href="#menu" class="cta-button">Voir le Menu</a>
+            <a href="#nouveautes" class="cta-button">🔥 Découvrir les Nouveautés</a>
         </div>
     </section>
 
-    <!-- Menu Section - Pizzas -->
+    <!-- NOUVEAUTÉS SECTION -->
+    <section class="nouveautes" id="nouveautes">
+        <div class="container" style="text-align: center;">
+            <div class="nouveautes-badge">🔥 NOUVEAUTÉ 🔥</div>
+            <h2 class="nouveautes-title">Crousty Collection</h2>
+            <p style="color: var(--cream); font-size: 1.2rem; margin-bottom: 3rem; position: relative; z-index: 1;">
+                Découvrez nos nouveautés exclusives : Riz Crousty et Pâtes Crousty !<br>
+                Une explosion de saveurs croustillantes qui va vous surprendre !
+            </p>
+            
+            <div class="nouveautes-grid">
+                <!-- Riz Crousty M -->
+                <div class="nouveaute-card">
+                    <span class="nouveaute-badge">NEW</span>
+                    <img src="/mnt/agents/upload/WhatsApp Image 2026-04-10 at 19.00.06 (2).jpeg" alt="Riz Crousty M" class="nouveaute-image">
+                    <div class="nouveaute-content">
+                        <h3>Riz Crousty</h3>
+                        <p>Poulet crousty sauce secrète sur riz</p>
+                        <span class="size-label">Taille M</span>
+                    </div>
+                </div>
+
+                <!-- Riz Crousty XL -->
+                <div class="nouveaute-card">
+                    <span class="nouveaute-badge">NEW</span>
+                    <img src="/mnt/agents/upload/WhatsApp Image 2026-04-10 at 19.00.06 (3).jpeg" alt="Riz Crousty XL" class="nouveaute-image">
+                    <div class="nouveaute-content">
+                        <h3>Riz Crousty XL</h3>
+                        <p>Poulet crousty sauce secrète sur riz</p>
+                        <span class="size-label">Taille XL</span>
+                        <span class="size-label">+ Skittles Sour</span>
+                    </div>
+                </div>
+
+                <!-- Pâtes Crousty M -->
+                <div class="nouveaute-card">
+                    <span class="nouveaute-badge">NEW</span>
+                    <img src="/mnt/agents/upload/WhatsApp Image 2026-04-10 at 19.00.06.jpeg" alt="Pâtes Crousty M" class="nouveaute-image">
+                    <div class="nouveaute-content">
+                        <h3>Pâtes Crousty</h3>
+                        <p>Poulet crousty sauce secrète sur pâtes</p>
+                        <span class="size-label">Taille M</span>
+                    </div>
+                </div>
+
+                <!-- Pâtes Crousty XL -->
+                <div class="nouveaute-card">
+                    <span class="nouveaute-badge">NEW</span>
+                    <img src="/mnt/agents/upload/WhatsApp Image 2026-04-10 at 19.00.06 (1).jpeg" alt="Pâtes Crousty XL" class="nouveaute-image">
+                    <div class="nouveaute-content">
+                        <h3>Pâtes Crousty XL</h3>
+                        <p>Poulet crousty sauce secrète sur pâtes</p>
+                        <span class="size-label">Taille XL</span>
+                        <span class="size-label">+ Skittles Original</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
     <section class="menu" id="menu">
         <div class="container">
-            <h2 class="section-title">Notre Menu</h2>
+            <h2 class="section-title">Notre Menu Complet</h2>
             
+            <!-- Crousty (dans le menu aussi) -->
+            <div class="menu-category">
+                <h3 class="category-title">🔥 Nouveautés Crousty</h3>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="menu-card-header">
+                            <h3>Riz Crousty M</h3>
+                            <span class="price-tag badge-new">NOUVEAU</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <p>Poulet crousty sauce secrète sur riz parfumé</p>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-card-header">
+                            <h3>Riz Crousty XL</h3>
+                            <span class="price-tag badge-new">NOUVEAU</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <p>Poulet crousty sauce secrète sur riz + Skittles Sour offert</p>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-card-header">
+                            <h3>Pâtes Crousty M</h3>
+                            <span class="price-tag badge-new">NOUVEAU</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <p>Poulet crousty sauce secrète sur pâtes fraîches</p>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="menu-card-header">
+                            <h3>Pâtes Crousty XL</h3>
+                            <span class="price-tag badge-new">NOUVEAU</span>
+                        </div>
+                        <div class="menu-card-content">
+                            <p>Poulet crousty sauce secrète sur pâtes + Skittles Original offert</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Pizzas -->
             <div class="menu-category">
                 <h3 class="category-title">🍕 Nos Pizzas 100% Mozza</h3>
@@ -1380,10 +1635,11 @@
                     <h3>Votre Fast Food Halal au Cœur du 17ème</h3>
                     <p>Best Cook vous accueille dans une ambiance chaleureuse et conviviale pour déguster les meilleurs burgers, pizzas, et spécialités fast food 100% Halal. Situé au <strong>145 Avenue de Saint Ouen</strong>, nous vous proposons une cuisine de qualité avec des ingrédients frais et soigneusement sélectionnés.</p>
                     <br>
-                    <p>Notre engagement : vous offrir une expérience culinaire unique avec des produits Halal certifiés, préparés avec passion par notre équipe. Que vous préfériez manger sur place, emporter ou vous faire livrer, nous sommes là pour satisfaire toutes vos envies !</p>
+                    <p>Notre engagement : vous offrir une expérience culinaire unique avec des produits Halal certifiés, préparés avec passion par notre équipe. Découvrez nos <strong>nouveautés Crousty</strong> : Riz Crousty et Pâtes Crousty, une explosion de saveurs croustillantes !</p>
                     <ul class="features-list">
                         <li>100% Halal certifié</li>
                         <li>Produits frais et qualité premium</li>
+                        <li>Nouveautés exclusives Crousty</li>
                         <li>Service rapide et souriant</li>
                         <li>Livraison disponible</li>
                         <li>Ouvert 7j/7 jusqu'à minuit</li>
@@ -1559,7 +1815,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.menu-card, .gallery-item, .info-card').forEach(el => {
+        document.querySelectorAll('.menu-card, .gallery-item, .info-card, .nouveaute-card').forEach(el => {
             el.classList.add('scroll-reveal');
             observer.observe(el);
         });
