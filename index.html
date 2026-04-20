@@ -121,16 +121,27 @@
         .mobile-menu.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
         /* Mobile dropdown menu */
+        /* Overlay sombre derrière le menu mobile */
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            top: 60px;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 998;
+        }
+        .mobile-nav-overlay.open { display: block; }
+
         .mobile-nav {
             display: none;
             position: fixed;
             top: 60px;
             left: 0;
             right: 0;
-            background: #0a2319;
+            background: #081e14;
             z-index: 999;
-            padding: 0.25rem 0 1rem;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.7);
+            padding: 0 0 0.75rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
             flex-direction: column;
             border-top: 3px solid var(--orange);
         }
@@ -141,24 +152,24 @@
             text-decoration: none;
             color: #ffffff;
             font-weight: 700;
-            font-size: 1.05rem;
-            padding: 0 5%;
-            min-height: 58px;
+            font-size: 1.1rem;
+            padding: 0 6%;
+            min-height: 60px;
             display: flex;
             align-items: center;
             gap: 0.9rem;
             border-bottom: 1px solid rgba(255,255,255,0.07);
             letter-spacing: 0.3px;
-            transition: background 0.15s, color 0.15s;
+            transition: background 0.15s, color 0.15s, padding-left 0.15s;
         }
 
         .mobile-nav a:last-child { border-bottom: none; }
 
         .mobile-nav a:active,
         .mobile-nav a:hover {
-            background: rgba(244, 162, 97, 0.15);
+            background: rgba(244, 162, 97, 0.18);
             color: var(--orange);
-            padding-left: calc(5% + 4px);
+            padding-left: calc(6% + 5px);
         }
 
 
@@ -1458,6 +1469,8 @@
     </nav>
 
     <!-- Mobile dropdown -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
     <nav class="mobile-nav" id="mobileNav">
         <a href="#accueil" class="mobile-nav-link">🏠 Accueil</a>
         <a href="#nouveautes" class="mobile-nav-link">🔥 Nouveautés</a>
@@ -1774,27 +1787,33 @@
         // === BURGER MENU MOBILE ===
         const burgerBtn = document.getElementById('burgerBtn');
         const mobileNav = document.getElementById('mobileNav');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+        function openMobileMenu() {
+            burgerBtn.classList.add('open');
+            mobileNav.classList.add('open');
+            mobileNavOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            burgerBtn.classList.remove('open');
+            mobileNav.classList.remove('open');
+            mobileNavOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
 
         burgerBtn.addEventListener('click', () => {
-            burgerBtn.classList.toggle('open');
-            mobileNav.classList.toggle('open');
+            mobileNav.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
         });
 
-        // Fermer le menu en cliquant sur un lien
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                burgerBtn.classList.remove('open');
-                mobileNav.classList.remove('open');
-            });
+        // Fermer en cliquant sur un lien
+        document.querySelectorAll('#mobileNav a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
 
-        // Fermer si clic hors du menu
-        document.addEventListener('click', (e) => {
-            if (!burgerBtn.contains(e.target) && !mobileNav.contains(e.target)) {
-                burgerBtn.classList.remove('open');
-                mobileNav.classList.remove('open');
-            }
-        });
+        // Fermer en cliquant sur l'overlay
+        mobileNavOverlay.addEventListener('click', closeMobileMenu);
 
         // === SMOOTH SCROLLING ===
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
