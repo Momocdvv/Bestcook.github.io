@@ -1171,6 +1171,176 @@
             .nouveaute-card { width: 210px; }
             .gallery-item { height: 120px; }
         }
+
+        /* ===== BEST SELLERS ===== */
+        .bestsellers {
+            background: var(--dark-green);
+            padding: 4rem 0 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bestsellers .container { text-align: center; padding: 0 5%; }
+
+        .bs-badge {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--dark-green);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .bs-title {
+            color: var(--white);
+            font-size: clamp(1.6rem, 5vw, 2.6rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .bs-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--orange);
+            margin: 0.8rem auto;
+            border-radius: 2px;
+        }
+
+        .bs-subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .bs-scroll-wrapper {
+            overflow-x: auto;
+            padding: 0.5rem 5% 1.5rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .bs-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+        .bs-grid {
+            display: flex;
+            gap: 1.2rem;
+            width: max-content;
+        }
+
+        .bs-card {
+            background: var(--white);
+            border-radius: 16px;
+            width: 200px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
+            border: 2px solid rgba(244,162,97,0.3);
+        }
+
+        .bs-card.bs-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .bs-card:hover {
+            box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+            border-color: var(--orange);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .bs-rank {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: var(--orange);
+            color: var(--dark-green);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            z-index: 5;
+        }
+
+        .bs-card-img-wrap {
+            position: relative;
+            height: 140px;
+            background: var(--cream);
+            overflow: hidden;
+        }
+
+        .bs-card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bs-emoji {
+            font-size: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .bs-card-body {
+            padding: 1rem 0.9rem;
+            text-align: left;
+        }
+
+        .bs-card-body h3 {
+            font-size: 0.95rem;
+            color: var(--dark-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .bs-card-body p {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .bs-price {
+            background: var(--orange);
+            color: var(--dark-green);
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* ===== CARTE GOOGLE MAPS ===== */
+        .map-wrapper {
+            margin-top: 2rem;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(27,77,62,0.15);
+            border: 3px solid rgba(27,77,62,0.12);
+            height: 320px;
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .map-wrapper { height: 240px; }
+            .bs-card { width: 170px; }
+            .bs-card-img-wrap { height: 115px; }
+        }
     </style>
 </head>
 <body>
@@ -1282,6 +1452,85 @@
         </div>
     </section>
 
+    <!-- Best Sellers -->
+    <section class="bestsellers" id="bestsellers">
+        <div class="container">
+            <div class="bs-badge">⭐ BEST SELLERS</div>
+            <h2 class="bs-title">Les Incontournables</h2>
+            <p class="bs-subtitle">Les plats que nos clients commandent encore et encore</p>
+        </div>
+        <div class="bs-scroll-wrapper">
+            <div class="bs-grid" id="bsGrid">
+                <div class="bs-card">
+                    <div class="bs-card-img-wrap">
+                        <span class="bs-rank">1</span>
+                        <div class="bs-emoji">🍔</div>
+                    </div>
+                    <div class="bs-card-body">
+                        <h3>La Best</h3>
+                        <p>Mozza, Merguez, Viande hachée, Lardons, Sauce BBQ</p>
+                        <span class="bs-price">POPULAIRE</span>
+                    </div>
+                </div>
+                <div class="bs-card">
+                    <div class="bs-card-img-wrap">
+                        <span class="bs-rank">2</span>
+                        <div class="bs-emoji">🍕</div>
+                    </div>
+                    <div class="bs-card-body">
+                        <h3>Pizza La Best</h3>
+                        <p>Jambon, Merguez, Pepperoni, Sauce Barbecue</p>
+                        <span class="bs-price">6€50 – 14€50</span>
+                    </div>
+                </div>
+                <div class="bs-card">
+                    <div class="bs-card-img-wrap">
+                        <span class="bs-rank">3</span>
+                        <div class="bs-emoji">🍔</div>
+                    </div>
+                    <div class="bs-card-body">
+                        <h3>Big Mac</h3>
+                        <p>2 Steaks, Sauce Big, Cheddar, Pickles, Salade</p>
+                        <span class="bs-price">5€70</span>
+                    </div>
+                </div>
+                <div class="bs-card">
+                    <div class="bs-card-img-wrap">
+                        <span class="bs-rank">4</span>
+                        <div class="bs-emoji">🥗</div>
+                    </div>
+                    <div class="bs-card-body">
+                        <h3>Bowl Orientale</h3>
+                        <p>Potato Pops, Merguez, Poivrons, Sauce Algérienne</p>
+                        <span class="bs-price">8€50</span>
+                    </div>
+                </div>
+                <div class="bs-card">
+                    <div class="bs-card-img-wrap">
+                        <span class="bs-rank">5</span>
+                        <div class="bs-emoji">🍗</div>
+                    </div>
+                    <div class="bs-card-body">
+                        <h3>Box Mixte</h3>
+                        <p>4 Chili Cheese + 4 Camembert + 4 Pop'in + 4 Nuggets</p>
+                        <span class="bs-price">10€00</span>
+                    </div>
+                </div>
+                <div class="bs-card">
+                    <div class="bs-card-img-wrap">
+                        <span class="bs-rank">6</span>
+                        <div class="bs-emoji">🥤</div>
+                    </div>
+                    <div class="bs-card-body">
+                        <h3>Milk Shake</h3>
+                        <p>Vanille ou Fraise, Oreo, Kinder, Lotus au choix</p>
+                        <span class="bs-price">4€50</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About -->
     <section class="about" id="about">
         <div class="container">
@@ -1308,27 +1557,41 @@
         </div>
     </section>
 
-    <!-- Gallery -->
-    <section class="gallery" id="galerie">
+    <!-- Accès & Proximité -->
+    <section class="acces">
         <div class="container">
-            <h2 class="section-title">Nos Spécialités</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400" alt="Pizza">
-                    <div class="gallery-overlay">Nos Pizzas</div>
+            <h2 class="section-title">Nous Trouver</h2>
+            <div class="acces-grid">
+                <div class="acces-card">
+                    <div class="acces-icon">🚇</div>
+                    <h3>Accès facile en métro</h3>
+                    <p class="acces-line"><strong>Ligne 13</strong> — Station <strong>Porte de Saint-Ouen</strong></p>
+                    <p class="acces-detail">Sortie directe sur l'Avenue de Saint Ouen · à 1 min à pied du restaurant</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400" alt="Burger">
-                    <div class="gallery-overlay">Nos Burgers</div>
+                <div class="acces-card">
+                    <div class="acces-icon">🗺️</div>
+                    <h3>À proximité</h3>
+                    <ul class="nearby-list">
+                        <li>🎨 <strong>Montmartre / Sacré-Cœur</strong> <span class="nearby-time">15 min à pied</span></li>
+                        <li>🎡 <strong>Moulin Rouge</strong> <span class="nearby-time">10 min</span></li>
+                        <li>🎭 <strong>Opéra Garnier</strong> <span class="nearby-time">20 min en métro</span></li>
+                        <li>🏛️ <strong>Arc de Triomphe</strong> <span class="nearby-time">20 min en métro</span></li>
+                        <li>🌳 <strong>Parc Monceau</strong> <span class="nearby-time">15 min en métro</span></li>
+                        <li>⚽ <strong>Stade de France</strong> <span class="nearby-time">10 min en métro</span></li>
+                        <li>🛍️ <strong>Marché aux Puces de St-Ouen</strong> <span class="nearby-time">5 min à pied</span></li>
+                    </ul>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=400" alt="Frites">
-                    <div class="gallery-overlay">Nos Frites</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1561758033-d8f14f7f9f5f?w=400" alt="Bowls">
-                    <div class="gallery-overlay">Nos Bowls</div>
-                </div>
+            </div>
+        </div>
+            <!-- Carte -->
+            <div class="map-wrapper">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.197276!2d2.3267!3d48.8958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fcd0e226b29%3A0x5073d5ab7da45f06!2s145+Av.+de+Saint-Ouen%2C+75017+Paris!5e0!3m2!1sfr!2sfr!4v1713600000000!5m2!1sfr!2sfr"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Best Cook - 145 Avenue de Saint Ouen Paris 17">
+                </iframe>
             </div>
         </div>
     </section>
@@ -1368,34 +1631,6 @@
                 <a href="https://www.ubereats.com/fr/store/best-cook/rQD1qh9MSrWc9fg5nLQC_A" target="_blank" rel="noopener" class="delivery-badge delivery-link">
                     <span>🚗</span> Uber Eats
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Accès & Proximité -->
-    <section class="acces">
-        <div class="container">
-            <h2 class="section-title">Nous Trouver</h2>
-            <div class="acces-grid">
-                <div class="acces-card">
-                    <div class="acces-icon">🚇</div>
-                    <h3>Accès facile en métro</h3>
-                    <p class="acces-line"><strong>Ligne 13</strong> — Station <strong>Porte de Saint-Ouen</strong></p>
-                    <p class="acces-detail">Sortie directe sur l'Avenue de Saint Ouen · à 1 min à pied du restaurant</p>
-                </div>
-                <div class="acces-card">
-                    <div class="acces-icon">🗺️</div>
-                    <h3>À proximité</h3>
-                    <ul class="nearby-list">
-                        <li>🎨 <strong>Montmartre / Sacré-Cœur</strong> <span class="nearby-time">15 min à pied</span></li>
-                        <li>🎡 <strong>Moulin Rouge</strong> <span class="nearby-time">10 min</span></li>
-                        <li>🎭 <strong>Opéra Garnier</strong> <span class="nearby-time">20 min en métro</span></li>
-                        <li>🏛️ <strong>Arc de Triomphe</strong> <span class="nearby-time">20 min en métro</span></li>
-                        <li>🌳 <strong>Parc Monceau</strong> <span class="nearby-time">15 min en métro</span></li>
-                        <li>⚽ <strong>Stade de France</strong> <span class="nearby-time">10 min en métro</span></li>
-                        <li>🛍️ <strong>Marché aux Puces de St-Ouen</strong> <span class="nearby-time">5 min à pied</span></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </section>
@@ -1501,6 +1736,20 @@
             el.classList.add('scroll-reveal');
             observer.observe(el);
         });
+
+
+        // === BEST SELLERS ANIMATION ===
+        const bsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                const cards = document.querySelectorAll('.bs-card');
+                cards.forEach((card, i) => {
+                    setTimeout(() => card.classList.add('bs-visible'), i * 120);
+                });
+                bsObserver.disconnect();
+            }
+        }, { threshold: 0.15 });
+        const bsSection = document.querySelector('.bestsellers');
+        if (bsSection) bsObserver.observe(bsSection);
 
         // === MODAL NAVIGATION ===
         function openNavModal() {
