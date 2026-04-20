@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Menu — Best Cook Paris 17ème</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --dark-green: #1B4D3E;
+            --green: #2D6A4F;
+            --light-green: #40916C;
+            --orange: #F4A261;
+            --dark-orange: #E76F51;
+            --cream: #FDF6E3;
+            --white: #FFFFFF;
+            --dark: #1A1A1A;
+            --red: #E63946;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--dark-green);
+            z-index: 1000;
+            padding: 0.75rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(27, 77, 62, 0.3);
+            height: 60px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--orange);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo span { color: var(--white); }
+
+        .halal-badge {
+            background: var(--white);
+            color: var(--dark-green);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 700;
+        }
+
+        /* Desktop nav links */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--orange); }
+
+        /* Mobile menu button */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            min-width: 44px;
+            min-height: 44px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-menu span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: 0.3s;
+            display: block;
+        }
+
+        .mobile-menu.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .mobile-menu.open span:nth-child(2) { opacity: 0; }
+        .mobile-menu.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile dropdown menu */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: #0e3028;
+            z-index: 999;
+            padding: 0.5rem 0 1rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+            flex-direction: column;
+            border-top: 3px solid var(--orange);
+        }
+
+        .mobile-nav.open { display: flex; }
+
+        .mobile-nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 0 5%;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            letter-spacing: 0.3px;
+        }
+
+        .mobile-nav a:last-child { border-bottom: none; }
+
+        .mobile-nav a:active {
+            background: rgba(244, 162, 97, 0.25);
+            color: var(--orange);
+        }
+
+
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: calc(100vh - 60px);
+            background: linear-gradient(135deg, rgba(27, 77, 62, 0.95), rgba(45, 106, 79, 0.9)),
+                        url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            padding: 2rem 5%;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 8vw, 4rem);
+            margin-bottom: 0.8rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+
+        .hero h1 span { color: var(--orange); }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero-address {
+            background: rgba(255,255,255,0.15);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-phone {
+            font-size: clamp(1.4rem, 5vw, 2rem);
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 1.5rem;
+            display: block;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            background: var(--orange);
+            color: var(--dark-green);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(244, 162, 97, 0.4);
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-button:active {
+            transform: scale(0.97);
+        }
+
+        .hero-hours {
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            backdrop-filter: blur(6px);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-menu {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(6px);
+        }
+
+        .cta-menu:hover {
+            background: rgba(255,255,255,0.25);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.15);
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.12;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== NOUVEAUTÉS ===== */
+        .nouveautes {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--green) 100%);
+            padding: 4rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nouveautes::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(244, 162, 97, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .nouveautes .container { text-align: center; }
+
+        .nouveautes-badge {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .nouveautes-title {
+            color: var(--white);
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nouveautes-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--orange);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .nouveautes-subtitle {
+            color: var(--cream);
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        /* Scroll horizontal sur mobile, grid sur desktop */
+        .nouveautes-scroll-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .nouveautes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .nouveaute-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            position: relative;
+            border: 3px solid var(--orange);
+            flex-shrink: 0;
+        }
+
+        .nouveaute-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .nouveaute-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--red);
+            color: var(--white);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            z-index: 10;
+            animation: pulse 1.5s infinite;
+        }
+
+        .nouveaute-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--cream);
+            display: block;
+        }
+
+        .nouveaute-content {
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .nouveaute-content h3 {
+            color: var(--dark-green);
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .nouveaute-content p {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .size-label {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--dark-green);
+            padding: 0.25rem 0.7rem;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            margin: 0.15rem;
+        }
+
+        /* ===== SECTIONS COMMUNES ===== */
+        section { padding: 4rem 5%; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: var(--dark-green);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--orange);
+            margin: 0.8rem auto;
+            border-radius: 2px;
+        }
+
+        /* ===== MENU ===== */
+        .menu-category { margin-bottom: 3rem; }
+
+        .category-title {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: var(--green);
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 5px solid var(--orange);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .menu-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(27, 77, 62, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .menu-card:active {
+            border-color: var(--orange);
+            transform: scale(0.98);
+        }
+
+        .menu-card-header {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .menu-card h3 {
+            font-size: 1rem;
+            margin: 0;
+            flex: 1;
+        }
+
+        .price-tag {
+            background: var(--orange);
+            color: var(--dark-green);
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        .menu-card-content {
+            padding: 0.8rem 1rem;
+        }
+
+        .menu-card p {
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .size-badge {
+            background: var(--cream);
+            color: var(--dark-green);
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* ===== ABOUT ===== */
+        .about { background: var(--white); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-text h3 {
+            color: var(--dark-green);
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            margin-bottom: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .features-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--orange);
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .about-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(27, 77, 62, 0.2);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery { background: var(--cream); }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            height: 180px;
+            cursor: pointer;
+            border: 3px solid var(--white);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:active img { transform: scale(1.1); }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(27, 77, 62, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* ===== INFO ===== */
+        .info {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 3rem 5%;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .info-card {
+            padding: 1.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            border: 1px solid rgba(244, 162, 97, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .info-card:hover { transform: translateY(-5px); }
+
+        .info-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--orange);
+        }
+
+        .info-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== DELIVERY ===== */
+        .delivery { background: var(--cream); text-align: center; }
+
+        .delivery-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .delivery-badge {
+            background: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark-green);
+            border: 2px solid var(--dark-green);
+            min-height: 48px;
+        }
+
+        .delivery-link {
+            text-decoration: none;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .delivery-link:hover {
+            background: var(--dark-green);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(27,77,62,0.25);
+        }
+
+        .delivery-link:active {
+            transform: scale(0.97);
+        }
+
+        /* ===== ACCÈS & PROXIMITÉ ===== */
+        .acces {
+            background: var(--white);
+            padding: 4rem 5%;
+        }
+
+        .acces-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .acces-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 2px solid rgba(27,77,62,0.12);
+            box-shadow: 0 4px 16px rgba(27,77,62,0.07);
+        }
+
+        .acces-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .acces-card h3 {
+            color: var(--dark-green);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .acces-line {
+            font-size: 1.05rem;
+            color: var(--dark);
+            margin-bottom: 0.6rem;
+            line-height: 1.5;
+        }
+
+        .acces-detail {
+            font-size: 0.88rem;
+            color: #777;
+            line-height: 1.5;
+            margin-top: 0.4rem;
+            padding: 0.6rem 0.8rem;
+            background: rgba(244,162,97,0.15);
+            border-radius: 8px;
+            border-left: 3px solid var(--orange);
+        }
+
+        .nearby-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .nearby-list li {
+            font-size: 0.9rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(27,77,62,0.08);
+            line-height: 1.4;
+        }
+
+        .nearby-list li:last-child { border-bottom: none; }
+
+        .nearby-time {
+            color: var(--light-green);
+            font-size: 0.78rem;
+            font-weight: 600;
+            white-space: nowrap;
+            background: rgba(64,145,108,0.12);
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact { background: var(--white); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            background: var(--cream);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 2px solid var(--dark-green);
+        }
+
+        .form-group { margin-bottom: 1.2rem; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            color: var(--dark-green);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem; /* évite zoom iOS */
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
+        .form-group textarea { resize: vertical; }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--dark-green);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-height: 48px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .submit-btn:hover, .submit-btn:active {
+            background: var(--orange);
+            color: var(--dark-green);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.95rem;
+            padding: 0.9rem;
+            background: var(--cream);
+            border-radius: 10px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .contact-item span { font-size: 1.3rem; flex-shrink: 0; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 2.5rem 5%;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            min-height: 44px;
+        }
+
+        .social-links a:hover,
+        .social-links a:active {
+            background: var(--orange);
+            color: var(--dark-green);
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        /* ===== BADGES ===== */
+        .badge-new { background: var(--red); color: var(--white); }
+        .badge-popular { background: var(--orange); color: var(--dark-green); }
+
+        /* ===== ADRESSE CLIQUABLE ===== */
+        .addr-trigger {
+            cursor: pointer;
+            text-decoration: underline dotted;
+            text-underline-offset: 3px;
+            color: inherit;
+            background: none;
+            border: none;
+            font: inherit;
+            padding: 0;
+            display: inline;
+        }
+        .addr-trigger:hover { color: var(--orange); }
+
+        /* Modal navigation */
+        .nav-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 9000;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .nav-modal-overlay.open {
+            display: flex;
+            animation: fadeInBg 0.2s ease;
+        }
+        @keyframes fadeInBg { from { opacity: 0; } to { opacity: 1; } }
+
+        .nav-modal {
+            background: var(--white);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 20px 20px 0 0;
+            padding: 1.5rem 1.5rem 2rem;
+            animation: slideUpModal 0.25s ease;
+        }
+        @keyframes slideUpModal {
+            from { transform: translateY(30px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+        .nav-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--dark-green);
+            margin-bottom: 0.25rem;
+        }
+        .nav-modal-addr {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1.3rem;
+        }
+        .nav-modal-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.85rem 1.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: filter 0.15s;
+            min-height: 52px;
+            color: var(--white);
+        }
+        .nav-btn:active { filter: brightness(0.88); }
+        .nav-btn.waze  { background: #33CCFF; color: #1a1a1a; }
+        .nav-btn.gmaps { background: #4285F4; }
+        .nav-btn.apple { background: #1c1c1e; }
+        .nav-btn-icon { font-size: 1.4rem; }
+        .nav-modal-cancel {
+            margin-top: 0.9rem;
+            width: 100%;
+            background: none;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #888;
+            cursor: pointer;
+            min-height: 48px;
+        }
+        .nav-modal-cancel:active { background: #f5f5f5; }
+
+        /* ===== SCROLL REVEAL ===== */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE - TABLETTE ===== */
+        @media (max-width: 1024px) {
+            .nouveautes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-grid {
+                gap: 1rem;
+            }
+        }
+
+        /* ===== RESPONSIVE - MOBILE ===== */
+        @media (max-width: 768px) {
+            /* Navigation mobile */
+            .nav-links { display: none; }
+            .mobile-menu { display: flex; }
+
+            /* Hours banner sur plusieurs lignes */
+            .hours-banner {
+                padding: 0.8rem 4%;
+                font-size: 0.75rem;
+            }
+
+            /* Hero */
+            .hero { min-height: calc(100svh - 60px); }
+
+            /* Nouveautés : scroll horizontal sur mobile */
+            .nouveautes { padding: 3rem 0; }
+            .nouveautes .container { padding: 0 5%; }
+            .nouveautes-subtitle { padding: 0 5%; }
+
+            .nouveautes-scroll-wrapper {
+                overflow-x: auto;
+                padding: 0.5rem 5% 1.5rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .nouveautes-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+            .nouveautes-grid {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                width: max-content;
+            }
+
+            .nouveaute-card {
+                width: 240px;
+            }
+
+            .nouveaute-image { height: 160px; }
+
+            /* Menu grid : 1 colonne */
+            .menu-grid { grid-template-columns: 1fr; }
+            .menu-card-header { padding: 0.7rem; }
+            .menu-card h3 { font-size: 0.95rem; }
+
+            /* About : empilé */
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-image { order: -1; }
+            .about-image img { height: 250px; }
+
+            /* Gallery : 2 colonnes compactes */
+            .gallery-grid { gap: 0.6rem; }
+            .gallery-item { height: 140px; }
+            .gallery-item:hover img { transform: none; }
+            .gallery-overlay { opacity: 1; background: rgba(27, 77, 62, 0.5); font-size: 0.9rem; }
+
+            /* Info : 1 colonne */
+            .info-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .info-card { padding: 1.2rem; }
+
+            /* Delivery */
+            .delivery-grid { gap: 0.8rem; }
+            .delivery-badge { font-size: 0.9rem; padding: 0.7rem 1.2rem; }
+
+            /* Accès */
+            .acces-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+            .acces-card { padding: 1.5rem; }
+            .nearby-list li { flex-wrap: wrap; gap: 0.3rem; }
+
+            /* Contact : empilé */
+            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .contact-form { padding: 1.5rem; }
+            .contact-info { gap: 0.6rem; }
+            .contact-item { font-size: 0.9rem; padding: 0.75rem; }
+
+            /* Footer */
+            .social-links { gap: 0.6rem; }
+            .social-links a { font-size: 0.8rem; padding: 0.5rem 0.9rem; }
+            footer p { font-size: 0.8rem; }
+
+            /* Sections padding */
+            section { padding: 3rem 4%; }
+        }
+
+        /* ===== TRÈS PETIT ÉCRAN ===== */
+        @media (max-width: 360px) {
+            nav { padding: 0.6rem 3%; }
+            .logo { font-size: 1.3rem; }
+            .nouveaute-card { width: 210px; }
+            .gallery-item { height: 120px; }
+        }
+    </style>
+    <style>
+        .menu-page-hero {
+            background: var(--dark-green);
+            padding: 5rem 5% 2.5rem;
+            text-align: center;
+            color: var(--white);
+        }
+        .menu-page-hero h1 {
+            font-size: clamp(2rem, 6vw, 3.2rem);
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+        .menu-page-hero p {
+            opacity: 0.75;
+            font-size: 0.95rem;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.2rem;
+            padding: 0.55rem 1.2rem;
+            background: rgba(255,255,255,0.12);
+            color: var(--white);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: background 0.2s;
+        }
+        .back-btn:hover { background: rgba(255,255,255,0.22); }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">
+            BEST <span>COOK</span>
+            <span class="halal-badge">HALAL</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="index.html#nouveautes">Nouveautés</a></li>
+            <li><a href="menu.html" style="color:var(--orange);">Menu</a></li>
+            <li><a href="index.html#about">À propos</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="mobile-menu" id="burgerBtn" aria-label="Menu" role="button">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="index.html#nouveautes">🔥 Nouveautés</a>
+        <a href="menu.html" style="color:var(--orange);">🍔 Menu</a>
+        <a href="index.html#about">ℹ️ À propos</a>
+        <a href="index.html#contact">📞 Contact</a>
+    </nav>
+
+    <!-- Header menu -->
+    <div class="menu-page-hero">
+        <h1>Notre Menu</h1>
+        <p>100% Halal · Fait avec passion · Paris 17ème</p>
+        <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+    </div>
+
+        <!-- Menu -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2 class="section-title">Notre Menu Complet</h2>
+
+            <div class="menu-category">
+                <h3 class="category-title">🔥 Nouveautés Crousty</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Riz Crousty M</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur riz parfumé</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Riz Crousty XL</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur riz + Skittles Sour offert</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Crousty M</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur pâtes fraîches</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Crousty XL</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur pâtes + Skittles Original offert</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🍕 Nos Pizzas 100% Mozza</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Margherita</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Basilic, Olives</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Regina</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Jambon, Champignons</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>4 Fromages</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Emmental, Gorgonzola, Chèvre</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Orientale</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Merguez, Champignons, Œuf, Olives</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>La Best</h3><span class="price-tag badge-popular">POPULAIRE</span></div><div class="menu-card-content"><p>Mozza, Jambon, Merguez, Viande Hachée, Pepperoni, Lardons, Sauce Barbecue</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Tartiflette</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Base Crème, Mozza, Lardons, Pomme de terre, Reblochons, Oignons</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🍔 Classic Burgers</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Cheese Burger</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Royal Cheese</h3><span class="price-tag">5€60</span></div><div class="menu-card-content"><p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Giant</h3><span class="price-tag">5€50</span></div><div class="menu-card-content"><p>Steak, Sauce Giant, Cheddar, Salade, Oignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chicken Burger</h3><span class="price-tag">5€00</span></div><div class="menu-card-content"><p>Poulet Pané, Sauce Chicken, Salade</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Double Cheese</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>2 Steaks, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Big Mac</h3><span class="price-tag badge-popular">5€70</span></div><div class="menu-card-content"><p>2 Steaks, Sauce Big, Cheddar, Pickles, Salade, Oignons</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🍔🍔 Menus Burgers Doubles</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Double Big Mac B6</h3><span class="price-tag">11€00</span></div><div class="menu-card-content"><p>2 burgers + Frites + Boisson</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Crousty + Cheese B4</h3><span class="price-tag">10€50</span></div><div class="menu-card-content"><p>2 burgers + Frites + Boisson</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Menu Enfant</h3><span class="price-tag">5€50</span></div><div class="menu-card-content"><p>Cheeseburger (ou 6 Nuggets) + Frites + Capri-Sun</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🌟 Burgers Gourmets & Premium</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pepper</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage de Chèvre, Sauce Jumbo Pepper</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Smoky</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage Raclette, Sauce Smoky</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Best</h3><span class="price-tag badge-popular">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Bacon, Salade, Oignons Caramélisés, Cornichons, Emmental, Sauce Barbecue</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chicken Cajun</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Poulet Frit, Sauce Cajun, Salade, Tomate, Oignons, Pickles, Cheddar</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Beef Bacon</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Steak, Bacon, Sauce Maison, Salade, Tomate, Oignons, Pickles, Cheddar</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🥗 Bowls</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Orientale</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, V. Hachée, Merguez, Poivrons, Sauce Algérienne</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Burger</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, V. Hachée, Cheddar, Jambon, Oignons, Pickles, Sauce Biggy</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Savoyarde</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Cordon Bleu, Raclette, Lardons, Sauce Biggy</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Bollywood</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Poulet, Cheddar, Poivrons, Sauce Curry</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chèvre-Miel</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Poulet, Chèvre, Miel, Sauce Fromagère</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🍝 Pâtes</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Bolognaise</h3><span class="price-tag">12€50</span></div><div class="menu-card-content"><p>Pâtes gratinées avec sauce bolognaise</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Forestière</h3><span class="price-tag">12€50</span></div><div class="menu-card-content"><p>Pâtes gratinées aux champignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Saumon</h3><span class="price-tag">14€50</span></div><div class="menu-card-content"><p>Pâtes gratinées au saumon</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Bolo</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Pâtes fraîches sauce bolognaise</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Carbonara</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Pâtes fraîches sauce carbonara</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Saumon</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Pâtes fraîches au saumon</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🥬 Salades</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>César</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Salade César classique</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Niçoise</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Salade niçoise traditionnelle</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🍗 Apéritizers</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Nuggets</h3><span class="price-tag">3€00 - 5€50</span></div><div class="menu-card-content"><p>x4 3€00 | x8 5€50</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Tenders</h3><span class="price-tag">3€80</span></div><div class="menu-card-content"><p>x3 Tenders croustillants</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pop'in</h3><span class="price-tag">3€00 - 6€50</span></div><div class="menu-card-content"><p>x4 3€00 | x8 6€50</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chili Cheese</h3><span class="price-tag">3€50 - 6€50</span></div><div class="menu-card-content"><p>x4 3€50 | x8 6€50</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chili Camembert</h3><span class="price-tag">3€50 - 6€50</span></div><div class="menu-card-content"><p>x4 3€50 | x8 6€50</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Box Mixte</h3><span class="price-tag">10€00</span></div><div class="menu-card-content"><p>4 Chili Cheese + 4 Chili Camembert + 4 Pop'in + 4 Nuggets</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🍟 Frites & Wraps</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Frites Simples</h3><span class="price-tag">2€50</span></div><div class="menu-card-content"><p>Supplément Bacon +2€00</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Frites Cajun</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Supplément Cheddar +1€00</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Potatoes Pop</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Potatoes croustillantes</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Chicken</h3><span class="price-tag">6€50</span></div><div class="menu-card-content"><p>Wrap au poulet</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Bœuf</h3><span class="price-tag">6€50</span></div><div class="menu-card-content"><p>Wrap au bœuf</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Mixed</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Mix Chicken + Bœuf</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🥤 Milkshakes & Smoothies</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Milk Shake</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>Base: Vanille ou Fraise<br>Coulis: Caramel, Choco, Fraise (+0€50)<br>Gourmandises: Kinder, Oreo, Lotus (+1€00)</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Smoothie</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>Base: Jus de Mangue ou Ananas<br>Fruits: Banane, Fraise, Ananas, Mangue</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🍨 Desserts</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Tarte Daim</h3><span class="price-tag">2€50</span></div><div class="menu-card-content"><p>Tarte au chocolat Daim</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Manguier</h3><span class="price-tag">3€50</span></div><div class="menu-card-content"><p>Dessert mangue</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Fraisier</h3><span class="price-tag">3€50</span></div><div class="menu-card-content"><p>Dessert fraise</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Oreo</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Oreo</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Nutella</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Nutella</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Daim</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Daim</p></div></div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <h3 class="category-title">🧃 Boissons</h3>
+                <div class="menu-grid">
+                    <div class="menu-card"><div class="menu-card-header"><h3>Boissons 33cl</h3><span class="price-tag">1€50</span></div><div class="menu-card-content"><p>Coca, Oasis, Orangina, Fanta, Sprite, 7UP, Lipton...</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Perrier 33cl</h3><span class="price-tag">1€50</span></div><div class="menu-card-content"><p>Eau gazeuse</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Eau 55cl</h3><span class="price-tag">1€00</span></div><div class="menu-card-content"><p>Eau plate</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Capri-Sun</h3><span class="price-tag">1€00</span></div><div class="menu-card-content"><p>Jus pour enfant</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer simplifié -->
+    <footer>
+        <div class="footer-logo">BEST COOK</div>
+        <p>145 Avenue de Saint Ouen, 75017 Paris | 01.40.79.19.23</p>
+        <p style="margin-top:0.4rem;opacity:0.7;">100% Halal - Ouvert tous les jours de 11h00 à minuit</p>
+        <p style="margin-top:0.8rem;font-size:0.75rem;opacity:0.5;">&copy; 2026 Best Cook</p>
+    </footer>
+
+    <script>
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        burgerBtn.addEventListener('click', () => {
+            burgerBtn.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+        });
+        document.querySelectorAll('#mobileNav a').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerBtn.classList.remove('open');
+                mobileNav.classList.remove('open');
+            });
+        });
+        document.addEventListener('click', (e) => {
+            if (!burgerBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+                burgerBtn.classList.remove('open');
+                mobileNav.classList.remove('open');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.menu-card').forEach(el => {
+            el.classList.add('scroll-reveal');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
