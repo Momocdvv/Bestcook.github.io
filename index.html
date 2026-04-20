@@ -938,6 +938,99 @@
         .badge-new { background: var(--red); color: var(--white); }
         .badge-popular { background: var(--orange); color: var(--dark-green); }
 
+        /* ===== ADRESSE CLIQUABLE ===== */
+        .addr-trigger {
+            cursor: pointer;
+            text-decoration: underline dotted;
+            text-underline-offset: 3px;
+            color: inherit;
+            background: none;
+            border: none;
+            font: inherit;
+            padding: 0;
+            display: inline;
+        }
+        .addr-trigger:hover { color: var(--orange); }
+
+        /* Modal navigation */
+        .nav-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 9000;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .nav-modal-overlay.open {
+            display: flex;
+            animation: fadeInBg 0.2s ease;
+        }
+        @keyframes fadeInBg { from { opacity: 0; } to { opacity: 1; } }
+
+        .nav-modal {
+            background: var(--white);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 20px 20px 0 0;
+            padding: 1.5rem 1.5rem 2rem;
+            animation: slideUpModal 0.25s ease;
+        }
+        @keyframes slideUpModal {
+            from { transform: translateY(30px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+        .nav-modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--dark-green);
+            margin-bottom: 0.25rem;
+        }
+        .nav-modal-addr {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1.3rem;
+        }
+        .nav-modal-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.85rem 1.2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: filter 0.15s;
+            min-height: 52px;
+            color: var(--white);
+        }
+        .nav-btn:active { filter: brightness(0.88); }
+        .nav-btn.waze  { background: #33CCFF; color: #1a1a1a; }
+        .nav-btn.gmaps { background: #4285F4; }
+        .nav-btn.apple { background: #1c1c1e; }
+        .nav-btn-icon { font-size: 1.4rem; }
+        .nav-modal-cancel {
+            margin-top: 0.9rem;
+            width: 100%;
+            background: none;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #888;
+            cursor: pointer;
+            min-height: 48px;
+        }
+        .nav-modal-cancel:active { background: #f5f5f5; }
+
         /* ===== SCROLL REVEAL ===== */
         .scroll-reveal {
             opacity: 0;
@@ -1094,7 +1187,7 @@
 
     <!-- Hours Banner -->
     <div class="hours-banner">
-        📍 145 Av. de Saint Ouen, 75017 Paris &nbsp;|&nbsp; 📞 01.40.79.19.23 &nbsp;|&nbsp; 🕐 Ouvert 7j/7 de 11h00 à minuit
+        📍 <button class="addr-trigger" onclick="openNavModal()">145 Av. de Saint Ouen, 75017 Paris</button> &nbsp;|&nbsp; 📞 01.40.79.19.23 &nbsp;|&nbsp; 🕐 Ouvert 7j/7 de 11h00 à minuit
     </div>
 
     <!-- Hero -->
@@ -1108,7 +1201,7 @@
         <div class="hero-content">
             <h1>BEST <span>COOK</span></h1>
             <p class="hero-subtitle">Fast Food Halal - Paris 17ème</p>
-            <div class="hero-address">📍 145 Avenue de Saint Ouen, 75017 Paris</div>
+            <div class="hero-address">📍 <button class="addr-trigger" onclick="openNavModal()" style="color:var(--white);">145 Avenue de Saint Ouen, 75017 Paris</button></div>
             <a href="tel:0140791923" class="hero-phone">01.40.79.19.23</a>
             <a href="#nouveautes" class="cta-button">🔥 Découvrir les Nouveautés</a>
         </div>
@@ -1372,7 +1465,7 @@
                 <div class="info-card">
                     <div class="info-icon">📍</div>
                     <h3>Adresse</h3>
-                    <p>145 Avenue de Saint Ouen<br>75017 Paris</p>
+                    <p><button class="addr-trigger" onclick="openNavModal()">145 Avenue de Saint Ouen<br>75017 Paris</button></p>
                 </div>
                 <div class="info-card">
                     <div class="info-icon">⏰</div>
@@ -1457,7 +1550,7 @@
                     <button type="button" class="submit-btn" id="submitBtn">Envoyer</button>
                 </div>
                 <div class="contact-info">
-                    <div class="contact-item"><span>📍</span><p>145 Avenue de Saint Ouen, 75017 Paris</p></div>
+                    <div class="contact-item"><span>📍</span><p><button class="addr-trigger" onclick="openNavModal()">145 Avenue de Saint Ouen, 75017 Paris</button></p></div>
                     <div class="contact-item"><span>📞</span><p><a href="tel:0140791923" style="color:inherit;text-decoration:none;font-weight:700;">01.40.79.19.23</a></p></div>
                     <div class="contact-item"><span>🕐</span><p>Ouvert tous les jours de 11h00 à minuit</p></div>
                     <div class="contact-item"><span>✉️</span><p>contact@bestcook.fr</p></div>
@@ -1475,7 +1568,7 @@
             <a href="https://www.facebook.com/bestcook" target="_blank" rel="noopener">📘 best cook</a>
             <a href="https://www.instagram.com/bestcook75017/" target="_blank" rel="noopener">📸 bestcook75017</a>
         </div>
-        <p>145 Avenue de Saint Ouen, 75017 Paris | 01.40.79.19.23</p>
+        <p><button class="addr-trigger" onclick="openNavModal()" style="color:var(--white);">145 Avenue de Saint Ouen, 75017 Paris</button> | 01.40.79.19.23</p>
         <p style="margin-top: 0.4rem; opacity: 0.7;">100% Halal - Ouvert tous les jours de 11h00 à minuit</p>
         <p style="margin-top: 0.8rem; font-size: 0.75rem; opacity: 0.5;">&copy; 2026 Best Cook - Tous droits réservés</p>
     </footer>
@@ -1534,6 +1627,23 @@
             observer.observe(el);
         });
 
+        // === MODAL NAVIGATION ===
+        function openNavModal() {
+            document.getElementById('navModalOverlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNavModalDirect() {
+            document.getElementById('navModalOverlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function closeNavModal(e) {
+            if (e.target === document.getElementById('navModalOverlay')) {
+                closeNavModalDirect();
+            }
+        }
+
         // === FORM ===
         document.getElementById('submitBtn').addEventListener('click', () => {
             const name = document.getElementById('name').value.trim();
@@ -1542,5 +1652,25 @@
         });
     </script>
 
+
+    <!-- Modal Navigation -->
+    <div class="nav-modal-overlay" id="navModalOverlay" onclick="closeNavModal(event)">
+        <div class="nav-modal">
+            <p class="nav-modal-title">📍 Ouvrir dans...</p>
+            <p class="nav-modal-addr">145 Avenue de Saint Ouen, 75017 Paris</p>
+            <div class="nav-modal-btns">
+                <a class="nav-btn waze" href="https://waze.com/ul?q=145+Avenue+de+Saint+Ouen+75017+Paris" target="_blank" rel="noopener" onclick="closeNavModalDirect()">
+                    <span class="nav-btn-icon">🗺️</span> Waze
+                </a>
+                <a class="nav-btn gmaps" href="https://www.google.com/maps/dir/?api=1&destination=145+Avenue+de+Saint+Ouen+75017+Paris" target="_blank" rel="noopener" onclick="closeNavModalDirect()">
+                    <span class="nav-btn-icon">📍</span> Google Maps
+                </a>
+                <a class="nav-btn apple" href="https://maps.apple.com/?daddr=145+Avenue+de+Saint+Ouen+75017+Paris&dirflg=d" target="_blank" rel="noopener" onclick="closeNavModalDirect()">
+                    <span class="nav-btn-icon">🍎</span> Plans (Apple Maps)
+                </a>
+            </div>
+            <button class="nav-modal-cancel" onclick="closeNavModalDirect()">Annuler</button>
+        </div>
+    </div>
 </body>
 </html>
