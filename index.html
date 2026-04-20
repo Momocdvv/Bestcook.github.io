@@ -127,29 +127,36 @@
             top: 60px;
             left: 0;
             right: 0;
-            background: var(--dark-green);
+            background: #0e3028;
             z-index: 999;
-            padding: 1rem 0;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            padding: 0.5rem 0 1rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5);
             flex-direction: column;
+            border-top: 3px solid var(--orange);
         }
 
         .mobile-nav.open { display: flex; }
 
         .mobile-nav a {
             text-decoration: none;
-            color: var(--white);
-            font-weight: 600;
-            padding: 1rem 5%;
-            font-size: 1.1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            min-height: 52px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 0 5%;
+            min-height: 56px;
             display: flex;
             align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            letter-spacing: 0.3px;
         }
 
         .mobile-nav a:last-child { border-bottom: none; }
-        .mobile-nav a:active { background: rgba(244,162,97,0.2); }
+
+        .mobile-nav a:active {
+            background: rgba(244, 162, 97, 0.25);
+            color: var(--orange);
+        }
 
         /* ===== HOURS BANNER ===== */
         .hours-banner {
