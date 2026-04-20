@@ -158,17 +158,7 @@
             color: var(--orange);
         }
 
-        /* ===== HOURS BANNER ===== */
-        .hours-banner {
-            background: var(--orange);
-            color: var(--dark-green);
-            text-align: center;
-            padding: 0.6rem 4%;
-            font-weight: 600;
-            font-size: 0.8rem;
-            margin-top: 60px;
-            line-height: 1.5;
-        }
+
 
         /* ===== HERO ===== */
         .hero {
@@ -244,6 +234,37 @@
 
         .cta-button:active {
             transform: scale(0.97);
+        }
+
+        .hero-hours {
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            backdrop-filter: blur(6px);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-menu {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(6px);
+        }
+
+        .cta-menu:hover {
+            background: rgba(255,255,255,0.25);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.15);
         }
 
         .floating-icons {
@@ -1164,7 +1185,7 @@
         <ul class="nav-links">
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#nouveautes">Nouveautés</a></li>
-            <li><a href="#menu">Menu</a></li>
+            <li><a href="menu.html">Menu</a></li>
             <li><a href="#about">À propos</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1180,15 +1201,11 @@
     <nav class="mobile-nav" id="mobileNav">
         <a href="#accueil" class="mobile-nav-link">🏠 Accueil</a>
         <a href="#nouveautes" class="mobile-nav-link">🔥 Nouveautés</a>
-        <a href="#menu" class="mobile-nav-link">🍔 Menu</a>
+        <a href="menu.html" class="mobile-nav-link">🍔 Menu</a>
         <a href="#about" class="mobile-nav-link">ℹ️ À propos</a>
         <a href="#contact" class="mobile-nav-link">📞 Contact</a>
     </nav>
 
-    <!-- Hours Banner -->
-    <div class="hours-banner">
-        📍 <button class="addr-trigger" onclick="openNavModal()">145 Av. de Saint Ouen, 75017 Paris</button> &nbsp;|&nbsp; 📞 01.40.79.19.23 &nbsp;|&nbsp; 🕐 Ouvert 7j/7 de 11h00 à minuit
-    </div>
 
     <!-- Hero -->
     <section class="hero" id="accueil">
@@ -1203,7 +1220,11 @@
             <p class="hero-subtitle">Fast Food Halal - Paris 17ème</p>
             <div class="hero-address">📍 <button class="addr-trigger" onclick="openNavModal()" style="color:var(--white);">145 Avenue de Saint Ouen, 75017 Paris</button></div>
             <a href="tel:0140791923" class="hero-phone">01.40.79.19.23</a>
-            <a href="#nouveautes" class="cta-button">🔥 Découvrir les Nouveautés</a>
+            <div class="hero-hours">🕐 Ouvert tous les jours · 11h00 – Minuit</div>
+            <div class="hero-actions">
+                <a href="#nouveautes" class="cta-button">🔥 Découvrir les Nouveautés</a>
+                <a href="menu.html" class="cta-button cta-menu">📋 Voir le Menu</a>
+            </div>
         </div>
     </section>
 
@@ -1256,152 +1277,6 @@
                         <span class="size-label">Taille XL</span>
                         <span class="size-label">+ Skittles Original</span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Menu -->
-    <section class="menu" id="menu">
-        <div class="container">
-            <h2 class="section-title">Notre Menu Complet</h2>
-
-            <div class="menu-category">
-                <h3 class="category-title">🔥 Nouveautés Crousty</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Riz Crousty M</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur riz parfumé</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Riz Crousty XL</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur riz + Skittles Sour offert</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Crousty M</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur pâtes fraîches</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Crousty XL</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur pâtes + Skittles Original offert</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍕 Nos Pizzas 100% Mozza</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Margherita</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Basilic, Olives</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Regina</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Jambon, Champignons</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>4 Fromages</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Emmental, Gorgonzola, Chèvre</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Orientale</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Merguez, Champignons, Œuf, Olives</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>La Best</h3><span class="price-tag badge-popular">POPULAIRE</span></div><div class="menu-card-content"><p>Mozza, Jambon, Merguez, Viande Hachée, Pepperoni, Lardons, Sauce Barbecue</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Tartiflette</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Base Crème, Mozza, Lardons, Pomme de terre, Reblochons, Oignons</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍔 Classic Burgers</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Cheese Burger</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Royal Cheese</h3><span class="price-tag">5€60</span></div><div class="menu-card-content"><p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Giant</h3><span class="price-tag">5€50</span></div><div class="menu-card-content"><p>Steak, Sauce Giant, Cheddar, Salade, Oignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chicken Burger</h3><span class="price-tag">5€00</span></div><div class="menu-card-content"><p>Poulet Pané, Sauce Chicken, Salade</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Double Cheese</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>2 Steaks, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Big Mac</h3><span class="price-tag badge-popular">5€70</span></div><div class="menu-card-content"><p>2 Steaks, Sauce Big, Cheddar, Pickles, Salade, Oignons</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍔🍔 Menus Burgers Doubles</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Double Big Mac B6</h3><span class="price-tag">11€00</span></div><div class="menu-card-content"><p>2 burgers + Frites + Boisson</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Crousty + Cheese B4</h3><span class="price-tag">10€50</span></div><div class="menu-card-content"><p>2 burgers + Frites + Boisson</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Menu Enfant</h3><span class="price-tag">5€50</span></div><div class="menu-card-content"><p>Cheeseburger (ou 6 Nuggets) + Frites + Capri-Sun</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🌟 Burgers Gourmets & Premium</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pepper</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage de Chèvre, Sauce Jumbo Pepper</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Smoky</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage Raclette, Sauce Smoky</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Best</h3><span class="price-tag badge-popular">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Bacon, Salade, Oignons Caramélisés, Cornichons, Emmental, Sauce Barbecue</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chicken Cajun</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Poulet Frit, Sauce Cajun, Salade, Tomate, Oignons, Pickles, Cheddar</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Beef Bacon</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Steak, Bacon, Sauce Maison, Salade, Tomate, Oignons, Pickles, Cheddar</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🥗 Bowls</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Orientale</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, V. Hachée, Merguez, Poivrons, Sauce Algérienne</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Burger</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, V. Hachée, Cheddar, Jambon, Oignons, Pickles, Sauce Biggy</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Savoyarde</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Cordon Bleu, Raclette, Lardons, Sauce Biggy</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Bollywood</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Poulet, Cheddar, Poivrons, Sauce Curry</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chèvre-Miel</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Poulet, Chèvre, Miel, Sauce Fromagère</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍝 Pâtes</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Bolognaise</h3><span class="price-tag">12€50</span></div><div class="menu-card-content"><p>Pâtes gratinées avec sauce bolognaise</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Forestière</h3><span class="price-tag">12€50</span></div><div class="menu-card-content"><p>Pâtes gratinées aux champignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Saumon</h3><span class="price-tag">14€50</span></div><div class="menu-card-content"><p>Pâtes gratinées au saumon</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Bolo</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Pâtes fraîches sauce bolognaise</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Carbonara</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Pâtes fraîches sauce carbonara</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Saumon</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Pâtes fraîches au saumon</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🥬 Salades</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>César</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Salade César classique</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Niçoise</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Salade niçoise traditionnelle</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍗 Apéritizers</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Nuggets</h3><span class="price-tag">3€00 - 5€50</span></div><div class="menu-card-content"><p>x4 3€00 | x8 5€50</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Tenders</h3><span class="price-tag">3€80</span></div><div class="menu-card-content"><p>x3 Tenders croustillants</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pop'in</h3><span class="price-tag">3€00 - 6€50</span></div><div class="menu-card-content"><p>x4 3€00 | x8 6€50</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chili Cheese</h3><span class="price-tag">3€50 - 6€50</span></div><div class="menu-card-content"><p>x4 3€50 | x8 6€50</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chili Camembert</h3><span class="price-tag">3€50 - 6€50</span></div><div class="menu-card-content"><p>x4 3€50 | x8 6€50</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Box Mixte</h3><span class="price-tag">10€00</span></div><div class="menu-card-content"><p>4 Chili Cheese + 4 Chili Camembert + 4 Pop'in + 4 Nuggets</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍟 Frites & Wraps</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Frites Simples</h3><span class="price-tag">2€50</span></div><div class="menu-card-content"><p>Supplément Bacon +2€00</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Frites Cajun</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Supplément Cheddar +1€00</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Potatoes Pop</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Potatoes croustillantes</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Chicken</h3><span class="price-tag">6€50</span></div><div class="menu-card-content"><p>Wrap au poulet</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Bœuf</h3><span class="price-tag">6€50</span></div><div class="menu-card-content"><p>Wrap au bœuf</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Mixed</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Mix Chicken + Bœuf</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🥤 Milkshakes & Smoothies</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Milk Shake</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>Base: Vanille ou Fraise<br>Coulis: Caramel, Choco, Fraise (+0€50)<br>Gourmandises: Kinder, Oreo, Lotus (+1€00)</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Smoothie</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>Base: Jus de Mangue ou Ananas<br>Fruits: Banane, Fraise, Ananas, Mangue</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍨 Desserts</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Tarte Daim</h3><span class="price-tag">2€50</span></div><div class="menu-card-content"><p>Tarte au chocolat Daim</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Manguier</h3><span class="price-tag">3€50</span></div><div class="menu-card-content"><p>Dessert mangue</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Fraisier</h3><span class="price-tag">3€50</span></div><div class="menu-card-content"><p>Dessert fraise</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Oreo</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Oreo</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Nutella</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Nutella</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Daim</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Daim</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🧃 Boissons</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Boissons 33cl</h3><span class="price-tag">1€50</span></div><div class="menu-card-content"><p>Coca, Oasis, Orangina, Fanta, Sprite, 7UP, Lipton...</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Perrier 33cl</h3><span class="price-tag">1€50</span></div><div class="menu-card-content"><p>Eau gazeuse</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Eau 55cl</h3><span class="price-tag">1€00</span></div><div class="menu-card-content"><p>Eau plate</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Capri-Sun</h3><span class="price-tag">1€00</span></div><div class="menu-card-content"><p>Jus pour enfant</p></div></div>
                 </div>
             </div>
         </div>
