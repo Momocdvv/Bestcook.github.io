@@ -699,6 +699,106 @@
             min-height: 48px;
         }
 
+        .delivery-link {
+            text-decoration: none;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+
+        .delivery-link:hover {
+            background: var(--dark-green);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(27,77,62,0.25);
+        }
+
+        .delivery-link:active {
+            transform: scale(0.97);
+        }
+
+        /* ===== ACCÈS & PROXIMITÉ ===== */
+        .acces {
+            background: var(--white);
+            padding: 4rem 5%;
+        }
+
+        .acces-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .acces-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 2px solid rgba(27,77,62,0.12);
+            box-shadow: 0 4px 16px rgba(27,77,62,0.07);
+        }
+
+        .acces-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .acces-card h3 {
+            color: var(--dark-green);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .acces-line {
+            font-size: 1.05rem;
+            color: var(--dark);
+            margin-bottom: 0.6rem;
+            line-height: 1.5;
+        }
+
+        .acces-detail {
+            font-size: 0.88rem;
+            color: #777;
+            line-height: 1.5;
+            margin-top: 0.4rem;
+            padding: 0.6rem 0.8rem;
+            background: rgba(244,162,97,0.15);
+            border-radius: 8px;
+            border-left: 3px solid var(--orange);
+        }
+
+        .nearby-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .nearby-list li {
+            font-size: 0.9rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(27,77,62,0.08);
+            line-height: 1.4;
+        }
+
+        .nearby-list li:last-child { border-bottom: none; }
+
+        .nearby-time {
+            color: var(--light-green);
+            font-size: 0.78rem;
+            font-weight: 600;
+            white-space: nowrap;
+            background: rgba(64,145,108,0.12);
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
         /* ===== CONTACT ===== */
         .contact { background: var(--white); }
 
@@ -929,6 +1029,11 @@
             /* Delivery */
             .delivery-grid { gap: 0.8rem; }
             .delivery-badge { font-size: 0.9rem; padding: 0.7rem 1.2rem; }
+
+            /* Accès */
+            .acces-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+            .acces-card { padding: 1.5rem; }
+            .nearby-list li { flex-wrap: wrap; gap: 0.3rem; }
 
             /* Contact : empilé */
             .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -1289,9 +1394,40 @@
             <h2 class="section-title">Livraison Disponible</h2>
             <p style="text-align: center; margin-bottom: 1.5rem; color: #666;">Commandez vos plats préférés via nos partenaires</p>
             <div class="delivery-grid">
-                <div class="delivery-badge"><span>🛵</span> Deliveroo</div>
-                <div class="delivery-badge"><span>🚗</span> Uber Eats</div>
-                <div class="delivery-badge"><span>📱</span> Just Eat</div>
+                <a href="https://deliveroo.fr/fr/menu/paris/la-fourche/best-cook" target="_blank" rel="noopener" class="delivery-badge delivery-link">
+                    <span>🛵</span> Deliveroo
+                </a>
+                <a href="https://www.ubereats.com/fr/store/best-cook/rQD1qh9MSrWc9fg5nLQC_A" target="_blank" rel="noopener" class="delivery-badge delivery-link">
+                    <span>🚗</span> Uber Eats
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accès & Proximité -->
+    <section class="acces">
+        <div class="container">
+            <h2 class="section-title">Nous Trouver</h2>
+            <div class="acces-grid">
+                <div class="acces-card">
+                    <div class="acces-icon">🚇</div>
+                    <h3>Accès facile en métro</h3>
+                    <p class="acces-line"><strong>Ligne 13</strong> — Station <strong>Porte de Saint-Ouen</strong></p>
+                    <p class="acces-detail">Sortie directe sur l'Avenue de Saint Ouen · à 1 min à pied du restaurant</p>
+                </div>
+                <div class="acces-card">
+                    <div class="acces-icon">🗺️</div>
+                    <h3>À proximité</h3>
+                    <ul class="nearby-list">
+                        <li>🎨 <strong>Montmartre / Sacré-Cœur</strong> <span class="nearby-time">15 min à pied</span></li>
+                        <li>🎡 <strong>Moulin Rouge</strong> <span class="nearby-time">10 min</span></li>
+                        <li>🎭 <strong>Opéra Garnier</strong> <span class="nearby-time">20 min en métro</span></li>
+                        <li>🏛️ <strong>Arc de Triomphe</strong> <span class="nearby-time">20 min en métro</span></li>
+                        <li>🌳 <strong>Parc Monceau</strong> <span class="nearby-time">15 min en métro</span></li>
+                        <li>⚽ <strong>Stade de France</strong> <span class="nearby-time">10 min en métro</span></li>
+                        <li>🛍️ <strong>Marché aux Puces de St-Ouen</strong> <span class="nearby-time">5 min à pied</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
