@@ -1304,16 +1304,6 @@
             font-size: 0.85rem;
         }
 
-        /* Conteneur principal : vedette full-width en haut, 2×2 en dessous */
-        .bs-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative; z-index: 1;
-            align-items: stretch;
-        }
 
         /* Carte générique */
         .bs-card {
@@ -1332,59 +1322,16 @@
         .bs-card:hover { background: rgba(255,255,255,0.13); }
 
         /* --- Carte vedette --- */
-        .bs-featured {
-            border: 2px solid var(--orange);
-            box-shadow: 0 0 0 4px rgba(244,162,97,0.12);
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
-            grid-column: 1 / -1;
-        }
-        .bs-featured.bs-visible {
-            box-shadow: 0 18px 45px rgba(0,0,0,0.45), 0 0 0 4px rgba(244,162,97,0.18);
-        }
-        .bs-featured .bs-img-wrap {
-            width: 160px;
-            flex-shrink: 0;
-            border-radius: 0;
-        }
-        .bs-featured .bs-emoji { font-size: 4rem; }
 
-        .bs-featured .bs-card-body {
-            padding: 1.3rem 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 0.5rem;
-            text-align: left;
-        }
-
-        .bs-featured .bs-card-body h3 {
-            color: var(--orange);
-            font-size: 1.25rem;
-            line-height: 1.2;
-        }
-
-        .bs-featured .bs-card-body p {
-            color: rgba(255,255,255,0.65);
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        .bs-featured .bs-price {
-            background: var(--orange);
-            color: var(--dark-green);
-            font-size: 0.8rem;
-            padding: 0.3rem 0.9rem;
-            width: fit-content;
-        }
-
-        /* --- Grille 2×2 --- */
+        /* Grille 4 best sellers */
         .bs-grid4 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative; z-index: 1;
+            padding: 0 5%;
         }
 
         .bs-small { transition-delay: 0.1s; }
@@ -1392,27 +1339,27 @@
         .bs-small:nth-child(3) { transition-delay: 0.26s; }
         .bs-small:nth-child(4) { transition-delay: 0.34s; }
 
-        .bs-small .bs-img-wrap { height: 80px; }
-        .bs-small .bs-emoji    { font-size: 2rem; }
+        .bs-small .bs-img-wrap { height: 100px; }
+        .bs-small .bs-emoji    { font-size: 2.5rem; }
 
         .bs-small .bs-card-body {
-            padding: 0.6rem 0.7rem 0.75rem;
+            padding: 0.75rem 0.8rem 0.9rem;
             text-align: center;
         }
 
         .bs-small .bs-card-body h3 {
             color: var(--white);
-            font-size: 0.8rem;
+            font-size: 0.88rem;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.25rem;
         }
 
         .bs-small .bs-card-body p {
-            color: rgba(255,255,255,0.45);
-            font-size: 0.65rem;
-            line-height: 1.3;
-            margin-bottom: 0.4rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.7rem;
+            line-height: 1.35;
+            margin-bottom: 0.45rem;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -1438,11 +1385,6 @@
         .bs-emoji { filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
 
         /* ── Mobile : vedette full width, grille 2×2 dessous ── */
-        @media (max-width: 700px) {
-            .bs-layout {
-                max-width: 100%;
-            }
-            .bs-featured .bs-img-wrap { width: 120px; }
             .bs-featured .bs-emoji { font-size: 3rem; }
             .bs-featured .bs-card-body { padding: 1rem 1.1rem; }
             .bs-featured .bs-card-body h3 { font-size: 1rem; }
@@ -1450,6 +1392,13 @@
             .bs-small .bs-img-wrap { height: 70px; }
             .bs-small .bs-emoji { font-size: 1.8rem; }
             .bs-small .bs-card-body h3 { font-size: 0.78rem; }
+        }
+
+        @media (max-width: 600px) {
+            .bs-grid4 { gap: 0.8rem; padding: 0 4%; }
+            .bs-small .bs-img-wrap { height: 85px; }
+            .bs-small .bs-emoji { font-size: 2.2rem; }
+            .bs-small .bs-card-body h3 { font-size: 0.82rem; }
         }
 
         /* ===== BANDEAU INFOS SECTION NOUS TROUVER ===== */
@@ -1637,36 +1586,21 @@
             <p class="bs-subtitle">Les plats que nos clients commandent encore et encore</p>
         </div>
 
-        <div class="bs-layout">
-
-            <!-- Carte vedette -->
-            <div class="bs-card bs-featured">
-                <div class="bs-img-wrap">
-                    <div class="bs-emoji">🍔</div>
+        <div class="bs-grid4">
+                <div class="bs-card bs-small">
+                    <div class="bs-img-wrap"><div class="bs-emoji">🍔</div></div>
+                    <div class="bs-card-body">
+                        <h3>La Best</h3>
+                        <p>Mozza, Merguez, Lardons, Sauce BBQ</p>
+                        <span class="bs-price">Burger Gourmet</span>
+                    </div>
                 </div>
-                <div class="bs-card-body">
-                    <h3>La Best</h3>
-                    <p>Mozza, Merguez, Viande hachée, Lardons, Sauce BBQ</p>
-                    <span class="bs-price">Burger Gourmet</span>
-                </div>
-            </div>
-
-            <!-- Grille 2×2 -->
-            <div class="bs-grid4">
                 <div class="bs-card bs-small">
                     <div class="bs-img-wrap"><div class="bs-emoji">🍕</div></div>
                     <div class="bs-card-body">
                         <h3>Pizza La Best</h3>
                         <p>Jambon, Merguez, Pepperoni, BBQ</p>
                         <span class="bs-price">6€50 – 14€50</span>
-                    </div>
-                </div>
-                <div class="bs-card bs-small">
-                    <div class="bs-img-wrap"><div class="bs-emoji">🍔</div></div>
-                    <div class="bs-card-body">
-                        <h3>Big Mac</h3>
-                        <p>2 Steaks, Sauce Big, Cheddar, Pickles</p>
-                        <span class="bs-price">5€70</span>
                     </div>
                 </div>
                 <div class="bs-card bs-small">
@@ -1685,8 +1619,6 @@
                         <span class="bs-price">10€00</span>
                     </div>
                 </div>
-            </div>
-
         </div>
     </section>
 
