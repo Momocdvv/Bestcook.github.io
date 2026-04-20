@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Best Cook - Fast Food Halal Paris 17ème</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -24,6 +25,11 @@
             --red: #E63946;
         }
 
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--cream);
@@ -35,45 +41,44 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Navigation */
+        /* ===== NAVIGATION ===== */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             background: var(--dark-green);
             z-index: 1000;
-            padding: 1rem 5%;
+            padding: 0.75rem 4%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 20px rgba(27, 77, 62, 0.3);
+            height: 60px;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--orange);
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
-        .logo span {
-            color: var(--white);
-        }
+        .logo span { color: var(--white); }
 
         .halal-badge {
             background: var(--white);
             color: var(--dark-green);
-            padding: 0.3rem 0.8rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 700;
-            margin-left: 0.5rem;
         }
 
+        /* Desktop nav links */
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -84,87 +89,138 @@
             text-decoration: none;
             color: var(--white);
             font-weight: 500;
+            font-size: 0.9rem;
             transition: color 0.3s;
-            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--orange);
-        }
+        .nav-links a:hover { color: var(--orange); }
 
+        /* Mobile menu button */
         .mobile-menu {
             display: none;
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
+            padding: 8px;
+            min-width: 44px;
+            min-height: 44px;
+            justify-content: center;
+            align-items: center;
         }
 
         .mobile-menu span {
-            width: 25px;
-            height: 3px;
+            width: 24px;
+            height: 2px;
             background: var(--white);
             transition: 0.3s;
+            display: block;
         }
 
-        /* Hero Section */
+        .mobile-menu.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .mobile-menu.open span:nth-child(2) { opacity: 0; }
+        .mobile-menu.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile dropdown menu */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: var(--dark-green);
+            z-index: 999;
+            padding: 1rem 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            flex-direction: column;
+        }
+
+        .mobile-nav.open { display: flex; }
+
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 600;
+            padding: 1rem 5%;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+        }
+
+        .mobile-nav a:last-child { border-bottom: none; }
+        .mobile-nav a:active { background: rgba(244,162,97,0.2); }
+
+        /* ===== HOURS BANNER ===== */
+        .hours-banner {
+            background: var(--orange);
+            color: var(--dark-green);
+            text-align: center;
+            padding: 0.6rem 4%;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-top: 60px;
+            line-height: 1.5;
+        }
+
+        /* ===== HERO ===== */
         .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(27, 77, 62, 0.95), rgba(45, 106, 79, 0.9)), 
-                        url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1920') center/cover;
+            min-height: calc(100vh - 60px);
+            background: linear-gradient(135deg, rgba(27, 77, 62, 0.95), rgba(45, 106, 79, 0.9)),
+                        url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--white);
             position: relative;
-            margin-top: 70px;
+            padding: 2rem 5%;
         }
 
         .hero-content {
             animation: fadeInUp 1s ease;
-            max-width: 800px;
-            padding: 0 2rem;
+            max-width: 600px;
+            width: 100%;
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: clamp(2.2rem, 8vw, 4rem);
+            margin-bottom: 0.8rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             letter-spacing: 2px;
         }
 
-        .hero h1 span {
-            color: var(--orange);
-        }
+        .hero h1 span { color: var(--orange); }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             margin-bottom: 1rem;
             font-weight: 300;
         }
 
         .hero-address {
             background: rgba(255,255,255,0.15);
-            padding: 1rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 50px;
             display: inline-block;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-size: clamp(0.8rem, 2.5vw, 1.1rem);
             backdrop-filter: blur(10px);
         }
 
         .hero-phone {
-            font-size: 2rem;
+            font-size: clamp(1.4rem, 5vw, 2rem);
             font-weight: 700;
             color: var(--orange);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             display: block;
             text-decoration: none;
+            padding: 0.5rem;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1rem 2.5rem;
+            padding: 0.9rem 2rem;
             background: var(--orange);
             color: var(--dark-green);
             text-decoration: none;
@@ -172,17 +228,17 @@
             font-weight: 700;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(244, 162, 97, 0.4);
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(244, 162, 97, 0.6);
-            background: var(--dark-orange);
-            color: var(--white);
+        .cta-button:active {
+            transform: scale(0.97);
         }
 
-        /* Floating Icons */
         .floating-icons {
             position: absolute;
             width: 100%;
@@ -193,8 +249,8 @@
 
         .float-item {
             position: absolute;
-            font-size: 2.5rem;
-            opacity: 0.15;
+            font-size: 2rem;
+            opacity: 0.12;
             animation: float 6s ease-in-out infinite;
         }
 
@@ -213,21 +269,15 @@
             50% { transform: scale(1.05); }
         }
 
-        /* Hours Banner */
-        .hours-banner {
-            background: var(--orange);
-            color: var(--dark-green);
-            text-align: center;
-            padding: 1rem;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 70px;
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        /* NOUVEAUTÉS SECTION */
+        /* ===== NOUVEAUTÉS ===== */
         .nouveautes {
             background: linear-gradient(135deg, var(--dark-green) 0%, var(--green) 100%);
-            padding: 5rem 5%;
+            padding: 4rem 5%;
             position: relative;
             overflow: hidden;
         }
@@ -243,10 +293,7 @@
             animation: rotate 20s linear infinite;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        .nouveautes .container { text-align: center; }
 
         .nouveautes-badge {
             display: inline-block;
@@ -255,8 +302,8 @@
             padding: 0.5rem 1.5rem;
             border-radius: 30px;
             font-weight: 800;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
             animation: pulse 2s infinite;
             box-shadow: 0 4px 15px rgba(230, 57, 70, 0.5);
             position: relative;
@@ -265,113 +312,13 @@
 
         .nouveautes-title {
             color: var(--white);
-            font-size: 3rem;
-            margin-bottom: 3rem;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            margin-bottom: 1rem;
             position: relative;
             z-index: 1;
         }
 
         .nouveautes-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 4px;
-            background: var(--orange);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-
-        .nouveautes-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .nouveaute-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            transition: all 0.3s;
-            position: relative;
-            border: 3px solid var(--orange);
-        }
-
-        .nouveaute-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-
-        .nouveaute-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--red);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            z-index: 10;
-            animation: pulse 1.5s infinite;
-        }
-
-        .nouveaute-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            background: var(--cream);
-        }
-
-        .nouveaute-content {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .nouveaute-content h3 {
-            color: var(--dark-green);
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .nouveaute-content p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .size-label {
-            display: inline-block;
-            background: var(--orange);
-            color: var(--dark-green);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            margin: 0.2rem;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 5%;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            color: var(--dark-green);
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
             content: '';
             display: block;
             width: 80px;
@@ -381,76 +328,190 @@
             border-radius: 2px;
         }
 
-        /* Menu Categories */
-        .menu-category {
-            margin-bottom: 4rem;
+        .nouveautes-subtitle {
+            color: var(--cream);
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
         }
 
+        /* Scroll horizontal sur mobile, grid sur desktop */
+        .nouveautes-scroll-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        .nouveautes-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .nouveaute-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            position: relative;
+            border: 3px solid var(--orange);
+            flex-shrink: 0;
+        }
+
+        .nouveaute-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+
+        .nouveaute-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--red);
+            color: var(--white);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            z-index: 10;
+            animation: pulse 1.5s infinite;
+        }
+
+        .nouveaute-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--cream);
+            display: block;
+        }
+
+        .nouveaute-content {
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .nouveaute-content h3 {
+            color: var(--dark-green);
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .nouveaute-content p {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .size-label {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--dark-green);
+            padding: 0.25rem 0.7rem;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            margin: 0.15rem;
+        }
+
+        /* ===== SECTIONS COMMUNES ===== */
+        section { padding: 4rem 5%; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: var(--dark-green);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--orange);
+            margin: 0.8rem auto;
+            border-radius: 2px;
+        }
+
+        /* ===== MENU ===== */
+        .menu-category { margin-bottom: 3rem; }
+
         .category-title {
-            font-size: 2rem;
+            font-size: clamp(1.2rem, 4vw, 2rem);
             color: var(--green);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             padding-left: 1rem;
             border-left: 5px solid var(--orange);
+            font-family: 'Playfair Display', serif;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
         }
 
         .menu-card {
             background: var(--white);
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(27, 77, 62, 0.1);
+            box-shadow: 0 3px 15px rgba(27, 77, 62, 0.1);
             transition: all 0.3s;
             border: 2px solid transparent;
         }
 
-        .menu-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(27, 77, 62, 0.2);
+        .menu-card:active {
             border-color: var(--orange);
+            transform: scale(0.98);
         }
 
         .menu-card-header {
             background: var(--dark-green);
             color: var(--white);
-            padding: 1rem;
+            padding: 0.8rem 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 0.5rem;
         }
 
         .menu-card h3 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin: 0;
+            flex: 1;
         }
 
         .price-tag {
             background: var(--orange);
             color: var(--dark-green);
-            padding: 0.3rem 0.8rem;
+            padding: 0.25rem 0.6rem;
             border-radius: 20px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            white-space: nowrap;
         }
 
         .menu-card-content {
-            padding: 1rem;
+            padding: 0.8rem 1rem;
         }
 
         .menu-card p {
             color: #666;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             line-height: 1.5;
         }
 
         .size-options {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             margin-top: 0.5rem;
             flex-wrap: wrap;
         }
@@ -459,32 +520,30 @@
             background: var(--cream);
             color: var(--dark-green);
             padding: 0.2rem 0.5rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
             font-weight: 600;
         }
 
-        /* About Section */
-        .about {
-            background: var(--white);
-        }
+        /* ===== ABOUT ===== */
+        .about { background: var(--white); }
 
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
             align-items: center;
         }
 
         .about-text {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.8;
             color: #555;
         }
 
         .about-text h3 {
             color: var(--dark-green);
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             margin-bottom: 1rem;
         }
 
@@ -498,47 +557,47 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.95rem;
         }
 
         .features-list li::before {
             content: '✓';
             color: var(--orange);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
 
         .about-image {
-            position: relative;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(27, 77, 62, 0.2);
+            box-shadow: 0 15px 35px rgba(27, 77, 62, 0.2);
         }
 
         .about-image img {
             width: 100%;
-            height: 400px;
+            height: 350px;
             object-fit: cover;
+            display: block;
         }
 
-        /* Gallery Section */
-        .gallery {
-            background: var(--cream);
-        }
+        /* ===== GALLERY ===== */
+        .gallery { background: var(--cream); }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 15px;
-            height: 250px;
+            border-radius: 12px;
+            height: 180px;
             cursor: pointer;
             border: 3px solid var(--white);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .gallery-item img {
@@ -548,105 +607,125 @@
             transition: transform 0.5s;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
+        .gallery-item:hover img,
+        .gallery-item:active img { transform: scale(1.1); }
 
         .gallery-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(27, 77, 62, 0.9);
+            inset: 0;
+            background: rgba(27, 77, 62, 0.85);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s;
             color: var(--white);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
 
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
 
-        /* Info Section */
+        /* ===== INFO ===== */
         .info {
             background: var(--dark-green);
             color: var(--white);
-            padding: 4rem 5%;
+            padding: 3rem 5%;
         }
 
         .info-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
+            gap: 1.5rem;
             text-align: center;
         }
 
         .info-card {
-            padding: 2rem;
+            padding: 1.5rem 1rem;
             background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s;
+            border-radius: 16px;
             border: 1px solid rgba(244, 162, 97, 0.3);
+            transition: transform 0.3s;
         }
 
-        .info-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
-        }
+        .info-card:hover { transform: translateY(-5px); }
 
         .info-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .info-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
             color: var(--orange);
         }
 
-        /* Contact Section */
-        .contact {
-            background: var(--white);
+        .info-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
+
+        /* ===== DELIVERY ===== */
+        .delivery { background: var(--cream); text-align: center; }
+
+        .delivery-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .delivery-badge {
+            background: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark-green);
+            border: 2px solid var(--dark-green);
+            min-height: 48px;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact { background: var(--white); }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
         }
 
         .contact-form {
             background: var(--cream);
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 2rem;
+            border-radius: 16px;
             border: 2px solid var(--dark-green);
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+        .form-group { margin-bottom: 1.2rem; }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             color: var(--dark-green);
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.75rem;
             border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            border-radius: 8px;
             font-family: 'Montserrat', sans-serif;
+            font-size: 1rem; /* évite zoom iOS */
             transition: border-color 0.3s;
         }
 
@@ -656,20 +735,24 @@
             border-color: var(--orange);
         }
 
+        .form-group textarea { resize: vertical; }
+
         .submit-btn {
             width: 100%;
-            padding: 1rem;
+            padding: 0.9rem;
             background: var(--dark-green);
             color: var(--white);
             border: none;
             border-radius: 10px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
+            min-height: 48px;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        .submit-btn:hover {
+        .submit-btn:hover, .submit-btn:active {
             background: var(--orange);
             color: var(--dark-green);
         }
@@ -678,152 +761,81 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            gap: 0.5rem;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            padding: 1rem;
+            font-size: 0.95rem;
+            padding: 0.9rem;
             background: var(--cream);
             border-radius: 10px;
             border-left: 4px solid var(--orange);
         }
 
-        .contact-item span {
-            font-size: 1.5rem;
-        }
+        .contact-item span { font-size: 1.3rem; flex-shrink: 0; }
 
-        /* Delivery Partners */
-        .delivery {
-            background: var(--cream);
-            text-align: center;
-        }
-
-        .delivery-grid {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .delivery-badge {
-            background: var(--white);
-            padding: 1rem 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            color: var(--dark-green);
-            border: 2px solid var(--dark-green);
-        }
-
-        /* Footer */
+        /* ===== FOOTER ===== */
         footer {
             background: var(--dark-green);
             color: var(--white);
-            padding: 3rem 5%;
+            padding: 2.5rem 5%;
             text-align: center;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255,255,255,0.1);
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-        }
-
-        .social-links a:hover {
-            background: var(--orange);
-            color: var(--dark-green);
-            transform: translateY(-3px);
-        }
-
         .footer-logo {
-            font-size: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--orange);
             margin-bottom: 1rem;
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .nouveautes-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-address {
-                font-size: 0.9rem;
-                padding: 0.8rem 1.5rem;
-            }
-
-            .hero-phone {
-                font-size: 1.5rem;
-            }
-
-            .nouveautes-title {
-                font-size: 2rem;
-            }
-
-            .nouveautes-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
+        .social-links a {
+            color: var(--white);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            min-height: 44px;
         }
 
-        /* Scroll Animation */
+        .social-links a:hover,
+        .social-links a:active {
+            background: var(--orange);
+            color: var(--dark-green);
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        /* ===== BADGES ===== */
+        .badge-new { background: var(--red); color: var(--white); }
+        .badge-popular { background: var(--orange); color: var(--dark-green); }
+
+        /* ===== SCROLL REVEAL ===== */
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
         }
 
         .scroll-reveal.active {
@@ -831,15 +843,107 @@
             transform: translateY(0);
         }
 
-        /* Special Badges */
-        .badge-new {
-            background: var(--red);
-            color: var(--white);
+        /* ===== RESPONSIVE - TABLETTE ===== */
+        @media (max-width: 1024px) {
+            .nouveautes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-grid {
+                gap: 1rem;
+            }
         }
 
-        .badge-popular {
-            background: var(--orange);
-            color: var(--dark-green);
+        /* ===== RESPONSIVE - MOBILE ===== */
+        @media (max-width: 768px) {
+            /* Navigation mobile */
+            .nav-links { display: none; }
+            .mobile-menu { display: flex; }
+
+            /* Hours banner sur plusieurs lignes */
+            .hours-banner {
+                padding: 0.8rem 4%;
+                font-size: 0.75rem;
+            }
+
+            /* Hero */
+            .hero { min-height: calc(100svh - 60px); }
+
+            /* Nouveautés : scroll horizontal sur mobile */
+            .nouveautes { padding: 3rem 0; }
+            .nouveautes .container { padding: 0 5%; }
+            .nouveautes-subtitle { padding: 0 5%; }
+
+            .nouveautes-scroll-wrapper {
+                overflow-x: auto;
+                padding: 0.5rem 5% 1.5rem;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .nouveautes-scroll-wrapper::-webkit-scrollbar { display: none; }
+
+            .nouveautes-grid {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                width: max-content;
+            }
+
+            .nouveaute-card {
+                width: 240px;
+            }
+
+            .nouveaute-image { height: 160px; }
+
+            /* Menu grid : 1 colonne */
+            .menu-grid { grid-template-columns: 1fr; }
+            .menu-card-header { padding: 0.7rem; }
+            .menu-card h3 { font-size: 0.95rem; }
+
+            /* About : empilé */
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-image { order: -1; }
+            .about-image img { height: 250px; }
+
+            /* Gallery : 2 colonnes compactes */
+            .gallery-grid { gap: 0.6rem; }
+            .gallery-item { height: 140px; }
+            .gallery-item:hover img { transform: none; }
+            .gallery-overlay { opacity: 1; background: rgba(27, 77, 62, 0.5); font-size: 0.9rem; }
+
+            /* Info : 1 colonne */
+            .info-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .info-card { padding: 1.2rem; }
+
+            /* Delivery */
+            .delivery-grid { gap: 0.8rem; }
+            .delivery-badge { font-size: 0.9rem; padding: 0.7rem 1.2rem; }
+
+            /* Contact : empilé */
+            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .contact-form { padding: 1.5rem; }
+            .contact-info { gap: 0.6rem; }
+            .contact-item { font-size: 0.9rem; padding: 0.75rem; }
+
+            /* Footer */
+            .social-links { gap: 0.6rem; }
+            .social-links a { font-size: 0.8rem; padding: 0.5rem 0.9rem; }
+            footer p { font-size: 0.8rem; }
+
+            /* Sections padding */
+            section { padding: 3rem 4%; }
+        }
+
+        /* ===== TRÈS PETIT ÉCRAN ===== */
+        @media (max-width: 360px) {
+            nav { padding: 0.6rem 3%; }
+            .logo { font-size: 1.3rem; }
+            .nouveaute-card { width: 210px; }
+            .gallery-item { height: 120px; }
         }
     </style>
 </head>
@@ -851,6 +955,7 @@
             BEST <span>COOK</span>
             <span class="halal-badge">HALAL</span>
         </a>
+        <!-- Desktop -->
         <ul class="nav-links">
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#nouveautes">Nouveautés</a></li>
@@ -858,20 +963,30 @@
             <li><a href="#about">À propos</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="mobile-menu">
+        <!-- Mobile burger -->
+        <div class="mobile-menu" id="burgerBtn" aria-label="Menu" role="button">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
 
+    <!-- Mobile dropdown -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="#accueil" class="mobile-nav-link">🏠 Accueil</a>
+        <a href="#nouveautes" class="mobile-nav-link">🔥 Nouveautés</a>
+        <a href="#menu" class="mobile-nav-link">🍔 Menu</a>
+        <a href="#about" class="mobile-nav-link">ℹ️ À propos</a>
+        <a href="#contact" class="mobile-nav-link">📞 Contact</a>
+    </nav>
+
     <!-- Hours Banner -->
     <div class="hours-banner">
-        📍 145 Avenue de Saint Ouen, 75017 Paris | 📞 01.40.79.19.23 | 🕐 Ouvert tous les jours de 11h00 à minuit
+        📍 145 Av. de Saint Ouen, 75017 Paris &nbsp;|&nbsp; 📞 01.40.79.19.23 &nbsp;|&nbsp; 🕐 Ouvert 7j/7 de 11h00 à minuit
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="accueil" style="margin-top: 0;">
+    <!-- Hero -->
+    <section class="hero" id="accueil">
         <div class="floating-icons">
             <div class="float-item" style="top: 20%; left: 10%;">🍕</div>
             <div class="float-item" style="top: 60%; left: 80%; animation-delay: 1s;">🍔</div>
@@ -881,26 +996,24 @@
         <div class="hero-content">
             <h1>BEST <span>COOK</span></h1>
             <p class="hero-subtitle">Fast Food Halal - Paris 17ème</p>
-            <div class="hero-address">
-                📍 145 Avenue de Saint Ouen, 75017 Paris
-            </div>
+            <div class="hero-address">📍 145 Avenue de Saint Ouen, 75017 Paris</div>
             <a href="tel:0140791923" class="hero-phone">01.40.79.19.23</a>
             <a href="#nouveautes" class="cta-button">🔥 Découvrir les Nouveautés</a>
         </div>
     </section>
 
-    <!-- NOUVEAUTÉS SECTION -->
+    <!-- Nouveautés -->
     <section class="nouveautes" id="nouveautes">
-        <div class="container" style="text-align: center;">
+        <div class="container">
             <div class="nouveautes-badge">🔥 NOUVEAUTÉ 🔥</div>
             <h2 class="nouveautes-title">Crousty Collection</h2>
-            <p style="color: var(--cream); font-size: 1.2rem; margin-bottom: 3rem; position: relative; z-index: 1;">
+            <p class="nouveautes-subtitle">
                 Découvrez nos nouveautés exclusives : Riz Crousty et Pâtes Crousty !<br>
                 Une explosion de saveurs croustillantes qui va vous surprendre !
             </p>
-            
+        </div>
+        <div class="nouveautes-scroll-wrapper">
             <div class="nouveautes-grid">
-                <!-- Riz Crousty M -->
                 <div class="nouveaute-card">
                     <span class="nouveaute-badge">NEW</span>
                     <img src="images/RizCroustyM.jpeg" alt="Riz Crousty M" class="nouveaute-image">
@@ -910,8 +1023,6 @@
                         <span class="size-label">Taille M</span>
                     </div>
                 </div>
-
-                <!-- Riz Crousty XL -->
                 <div class="nouveaute-card">
                     <span class="nouveaute-badge">NEW</span>
                     <img src="images/RizCroustyXL.jpeg" alt="Riz Crousty XL" class="nouveaute-image">
@@ -922,8 +1033,6 @@
                         <span class="size-label">+ Skittles Sour</span>
                     </div>
                 </div>
-
-                <!-- Pâtes Crousty M -->
                 <div class="nouveaute-card">
                     <span class="nouveaute-badge">NEW</span>
                     <img src="images/PateCroustyM.jpeg" alt="Pâtes Crousty M" class="nouveaute-image">
@@ -933,8 +1042,6 @@
                         <span class="size-label">Taille M</span>
                     </div>
                 </div>
-
-                <!-- Pâtes Crousty XL -->
                 <div class="nouveaute-card">
                     <span class="nouveaute-badge">NEW</span>
                     <img src="images/PateCroustyXL.jpeg" alt="Pâtes Crousty XL" class="nouveaute-image">
@@ -949,684 +1056,153 @@
         </div>
     </section>
 
-    <!-- Menu Section -->
+    <!-- Menu -->
     <section class="menu" id="menu">
         <div class="container">
             <h2 class="section-title">Notre Menu Complet</h2>
-            
-            <!-- Crousty (dans le menu aussi) -->
+
             <div class="menu-category">
                 <h3 class="category-title">🔥 Nouveautés Crousty</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Riz Crousty M</h3>
-                            <span class="price-tag badge-new">NOUVEAU</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Poulet crousty sauce secrète sur riz parfumé</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Riz Crousty XL</h3>
-                            <span class="price-tag badge-new">NOUVEAU</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Poulet crousty sauce secrète sur riz + Skittles Sour offert</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pâtes Crousty M</h3>
-                            <span class="price-tag badge-new">NOUVEAU</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Poulet crousty sauce secrète sur pâtes fraîches</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pâtes Crousty XL</h3>
-                            <span class="price-tag badge-new">NOUVEAU</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Poulet crousty sauce secrète sur pâtes + Skittles Original offert</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Riz Crousty M</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur riz parfumé</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Riz Crousty XL</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur riz + Skittles Sour offert</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Crousty M</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur pâtes fraîches</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Crousty XL</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur pâtes + Skittles Original offert</p></div></div>
                 </div>
             </div>
 
-            <!-- Pizzas -->
             <div class="menu-category">
                 <h3 class="category-title">🍕 Nos Pizzas 100% Mozza</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Margherita</h3>
-                            <span class="price-tag">6€50 - 14€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Mozza, Basilic, Olives</p>
-                            <div class="size-options">
-                                <span class="size-badge">Junior 6€50</span>
-                                <span class="size-badge">Senior 8€50</span>
-                                <span class="size-badge">Mega 14€50</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Regina</h3>
-                            <span class="price-tag">6€50 - 14€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Mozza, Jambon, Champignons</p>
-                            <div class="size-options">
-                                <span class="size-badge">Junior 6€50</span>
-                                <span class="size-badge">Senior 8€50</span>
-                                <span class="size-badge">Mega 14€50</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>4 Fromages</h3>
-                            <span class="price-tag">6€50 - 14€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Mozza, Emmental, Gorgonzola, Chèvre</p>
-                            <div class="size-options">
-                                <span class="size-badge">Junior 6€50</span>
-                                <span class="size-badge">Senior 8€50</span>
-                                <span class="size-badge">Mega 14€50</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Orientale</h3>
-                            <span class="price-tag">6€50 - 14€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Mozza, Merguez, Champignons, Œuf, Olives</p>
-                            <div class="size-options">
-                                <span class="size-badge">Junior 6€50</span>
-                                <span class="size-badge">Senior 8€50</span>
-                                <span class="size-badge">Mega 14€50</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>La Best</h3>
-                            <span class="price-tag badge-popular">POPULAIRE</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Mozza, Jambon, Merguez, Viande Hachée, Pepperoni, Lardons, Sauce Barbecue</p>
-                            <div class="size-options">
-                                <span class="size-badge">Junior 6€50</span>
-                                <span class="size-badge">Senior 8€50</span>
-                                <span class="size-badge">Mega 14€50</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Tartiflette</h3>
-                            <span class="price-tag">6€50 - 14€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Base Crème, Mozza, Lardons, Pomme de terre, Reblochons, Oignons</p>
-                            <div class="size-options">
-                                <span class="size-badge">Junior 6€50</span>
-                                <span class="size-badge">Senior 8€50</span>
-                                <span class="size-badge">Mega 14€50</span>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Margherita</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Basilic, Olives</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Regina</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Jambon, Champignons</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>4 Fromages</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Emmental, Gorgonzola, Chèvre</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Orientale</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Merguez, Champignons, Œuf, Olives</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>La Best</h3><span class="price-tag badge-popular">POPULAIRE</span></div><div class="menu-card-content"><p>Mozza, Jambon, Merguez, Viande Hachée, Pepperoni, Lardons, Sauce Barbecue</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Tartiflette</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Base Crème, Mozza, Lardons, Pomme de terre, Reblochons, Oignons</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
                 </div>
             </div>
 
-            <!-- Burgers -->
             <div class="menu-category">
                 <h3 class="category-title">🍔 Classic Burgers</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Cheese Burger</h3>
-                            <span class="price-tag">3€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Royal Cheese</h3>
-                            <span class="price-tag">5€60</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Giant</h3>
-                            <span class="price-tag">5€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Steak, Sauce Giant, Cheddar, Salade, Oignons</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Chicken Burger</h3>
-                            <span class="price-tag">5€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Poulet Pané, Sauce Chicken, Salade</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Double Cheese</h3>
-                            <span class="price-tag">4€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>2 Steaks, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Big Mac</h3>
-                            <span class="price-tag badge-popular">5€70</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>2 Steaks, Sauce Big, Cheddar, Pickles, Salade, Oignons</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Cheese Burger</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Royal Cheese</h3><span class="price-tag">5€60</span></div><div class="menu-card-content"><p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Giant</h3><span class="price-tag">5€50</span></div><div class="menu-card-content"><p>Steak, Sauce Giant, Cheddar, Salade, Oignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chicken Burger</h3><span class="price-tag">5€00</span></div><div class="menu-card-content"><p>Poulet Pané, Sauce Chicken, Salade</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Double Cheese</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>2 Steaks, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Big Mac</h3><span class="price-tag badge-popular">5€70</span></div><div class="menu-card-content"><p>2 Steaks, Sauce Big, Cheddar, Pickles, Salade, Oignons</p></div></div>
                 </div>
             </div>
 
-            <!-- Burgers Doubles -->
             <div class="menu-category">
                 <h3 class="category-title">🍔🍔 Menus Burgers Doubles</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Double Big Mac B6</h3>
-                            <span class="price-tag">11€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>2 burgers + Frites + Boisson</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Crousty + Cheese B4</h3>
-                            <span class="price-tag">10€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>2 burgers + Frites + Boisson</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Menu Enfant</h3>
-                            <span class="price-tag">5€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Cheeseburger (ou 6 Nuggets) + Frites + Capri-Sun</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Double Big Mac B6</h3><span class="price-tag">11€00</span></div><div class="menu-card-content"><p>2 burgers + Frites + Boisson</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Crousty + Cheese B4</h3><span class="price-tag">10€50</span></div><div class="menu-card-content"><p>2 burgers + Frites + Boisson</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Menu Enfant</h3><span class="price-tag">5€50</span></div><div class="menu-card-content"><p>Cheeseburger (ou 6 Nuggets) + Frites + Capri-Sun</p></div></div>
                 </div>
             </div>
 
-            <!-- Burgers Gourmets & Premium -->
             <div class="menu-category">
                 <h3 class="category-title">🌟 Burgers Gourmets & Premium</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pepper</h3>
-                            <span class="price-tag">8€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage de Chèvre, Sauce Jumbo Pepper</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Smoky</h3>
-                            <span class="price-tag">8€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage Raclette, Sauce Smoky</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Best</h3>
-                            <span class="price-tag badge-popular">8€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Steak 120g, Bacon, Salade, Oignons Caramélisés, Cornichons, Emmental, Sauce Barbecue</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Chicken Cajun</h3>
-                            <span class="price-tag">9€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Poulet Frit, Sauce Cajun, Salade, Tomate, Oignons, Pickles, Cheddar</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Beef Bacon</h3>
-                            <span class="price-tag">9€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Steak, Bacon, Sauce Maison, Salade, Tomate, Oignons, Pickles, Cheddar</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pepper</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage de Chèvre, Sauce Jumbo Pepper</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Smoky</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage Raclette, Sauce Smoky</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Best</h3><span class="price-tag badge-popular">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Bacon, Salade, Oignons Caramélisés, Cornichons, Emmental, Sauce Barbecue</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chicken Cajun</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Poulet Frit, Sauce Cajun, Salade, Tomate, Oignons, Pickles, Cheddar</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Beef Bacon</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Steak, Bacon, Sauce Maison, Salade, Tomate, Oignons, Pickles, Cheddar</p></div></div>
                 </div>
             </div>
 
-            <!-- Bowls -->
             <div class="menu-category">
                 <h3 class="category-title">🥗 Bowls</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Orientale</h3>
-                            <span class="price-tag">8€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Potato Pops, V. Hachée, Merguez, Poivrons, Sauce Algérienne</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Burger</h3>
-                            <span class="price-tag">8€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Potato Pops, V. Hachée, Cheddar, Jambon, Oignons, Pickles, Sauce Biggy</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Savoyarde</h3>
-                            <span class="price-tag">8€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Potato Pops, Cordon Bleu, Raclette, Lardons, Sauce Biggy</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Bollywood</h3>
-                            <span class="price-tag">8€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Potato Pops, Poulet, Cheddar, Poivrons, Sauce Curry</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Chèvre-Miel</h3>
-                            <span class="price-tag">8€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Potato Pops, Poulet, Chèvre, Miel, Sauce Fromagère</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Orientale</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, V. Hachée, Merguez, Poivrons, Sauce Algérienne</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Burger</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, V. Hachée, Cheddar, Jambon, Oignons, Pickles, Sauce Biggy</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Savoyarde</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Cordon Bleu, Raclette, Lardons, Sauce Biggy</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Bollywood</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Poulet, Cheddar, Poivrons, Sauce Curry</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chèvre-Miel</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Poulet, Chèvre, Miel, Sauce Fromagère</p></div></div>
                 </div>
             </div>
 
-            <!-- Pâtes -->
             <div class="menu-category">
                 <h3 class="category-title">🍝 Pâtes</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pâtes Gratinées Bolognaise</h3>
-                            <span class="price-tag">12€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Pâtes gratinées avec sauce bolognaise</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pâtes Gratinées Forestière</h3>
-                            <span class="price-tag">12€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Pâtes gratinées aux champignons</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pâtes Gratinées Saumon</h3>
-                            <span class="price-tag">14€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Pâtes gratinées au saumon</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pâtes Fraîches Bolo</h3>
-                            <span class="price-tag">7€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Pâtes fraîches sauce bolognaise</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pâtes Fraîches Carbonara</h3>
-                            <span class="price-tag">7€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Pâtes fraîches sauce carbonara</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pâtes Fraîches Saumon</h3>
-                            <span class="price-tag">9€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Pâtes fraîches au saumon</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Bolognaise</h3><span class="price-tag">12€50</span></div><div class="menu-card-content"><p>Pâtes gratinées avec sauce bolognaise</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Forestière</h3><span class="price-tag">12€50</span></div><div class="menu-card-content"><p>Pâtes gratinées aux champignons</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Saumon</h3><span class="price-tag">14€50</span></div><div class="menu-card-content"><p>Pâtes gratinées au saumon</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Bolo</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Pâtes fraîches sauce bolognaise</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Carbonara</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Pâtes fraîches sauce carbonara</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Saumon</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Pâtes fraîches au saumon</p></div></div>
                 </div>
             </div>
 
-            <!-- Salades -->
             <div class="menu-category">
                 <h3 class="category-title">🥬 Salades</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>César</h3>
-                            <span class="price-tag">7€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Salade César classique</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Niçoise</h3>
-                            <span class="price-tag">7€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Salade niçoise traditionnelle</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>César</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Salade César classique</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Niçoise</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Salade niçoise traditionnelle</p></div></div>
                 </div>
             </div>
 
-            <!-- Apéritizers -->
             <div class="menu-category">
                 <h3 class="category-title">🍗 Apéritizers</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Nuggets</h3>
-                            <span class="price-tag">3€00 - 5€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>x4 3€00 | x8 5€50</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Tenders</h3>
-                            <span class="price-tag">3€80</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>x3 Tenders croustillants</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Pop'in</h3>
-                            <span class="price-tag">3€00 - 6€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>x4 3€00 | x8 6€50</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Chili Cheese</h3>
-                            <span class="price-tag">3€50 - 6€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>x4 3€50 | x8 6€50</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Chili Camembert</h3>
-                            <span class="price-tag">3€50 - 6€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>x4 3€50 | x8 6€50</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Box Mixte</h3>
-                            <span class="price-tag">10€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>4 Chili Cheese + 4 Chili Camembert + 4 Pop'in + 4 Nuggets</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Nuggets</h3><span class="price-tag">3€00 - 5€50</span></div><div class="menu-card-content"><p>x4 3€00 | x8 5€50</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Tenders</h3><span class="price-tag">3€80</span></div><div class="menu-card-content"><p>x3 Tenders croustillants</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Pop'in</h3><span class="price-tag">3€00 - 6€50</span></div><div class="menu-card-content"><p>x4 3€00 | x8 6€50</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chili Cheese</h3><span class="price-tag">3€50 - 6€50</span></div><div class="menu-card-content"><p>x4 3€50 | x8 6€50</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Chili Camembert</h3><span class="price-tag">3€50 - 6€50</span></div><div class="menu-card-content"><p>x4 3€50 | x8 6€50</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Box Mixte</h3><span class="price-tag">10€00</span></div><div class="menu-card-content"><p>4 Chili Cheese + 4 Chili Camembert + 4 Pop'in + 4 Nuggets</p></div></div>
                 </div>
             </div>
 
-            <!-- Frites & Wraps -->
             <div class="menu-category">
                 <h3 class="category-title">🍟 Frites & Wraps</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Frites Simples</h3>
-                            <span class="price-tag">2€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Supplément Bacon +2€00</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Frites Cajun</h3>
-                            <span class="price-tag">3€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Supplément Cheddar +1€00</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Potatoes Pop</h3>
-                            <span class="price-tag">3€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Potatoes croustillantes</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Wrap Chicken</h3>
-                            <span class="price-tag">6€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Wrap au poulet</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Wrap Bœuf</h3>
-                            <span class="price-tag">6€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Wrap au bœuf</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Wrap Mixed</h3>
-                            <span class="price-tag">7€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Mix Chicken + Bœuf</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Frites Simples</h3><span class="price-tag">2€50</span></div><div class="menu-card-content"><p>Supplément Bacon +2€00</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Frites Cajun</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Supplément Cheddar +1€00</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Potatoes Pop</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Potatoes croustillantes</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Chicken</h3><span class="price-tag">6€50</span></div><div class="menu-card-content"><p>Wrap au poulet</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Bœuf</h3><span class="price-tag">6€50</span></div><div class="menu-card-content"><p>Wrap au bœuf</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Mixed</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Mix Chicken + Bœuf</p></div></div>
                 </div>
             </div>
 
-            <!-- Milkshakes & Smoothies -->
             <div class="menu-category">
                 <h3 class="category-title">🥤 Milkshakes & Smoothies</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Milk Shake</h3>
-                            <span class="price-tag">4€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Base: Vanille ou Fraise<br>Coulis: Caramel, Choco, Fraise (+0€50)<br>Gourmandises: Kinder, Oreo, Lotus (+1€00)</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Smoothie</h3>
-                            <span class="price-tag">4€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Base: Jus de Mangue ou Ananas<br>Fruits: Banane, Fraise, Ananas, Mangue</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Milk Shake</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>Base: Vanille ou Fraise<br>Coulis: Caramel, Choco, Fraise (+0€50)<br>Gourmandises: Kinder, Oreo, Lotus (+1€00)</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Smoothie</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>Base: Jus de Mangue ou Ananas<br>Fruits: Banane, Fraise, Ananas, Mangue</p></div></div>
                 </div>
             </div>
 
-            <!-- Desserts -->
             <div class="menu-category">
                 <h3 class="category-title">🍨 Desserts</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Tarte Daim</h3>
-                            <span class="price-tag">2€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Tarte au chocolat Daim</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Manguier</h3>
-                            <span class="price-tag">3€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Dessert mangue</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Fraisier</h3>
-                            <span class="price-tag">3€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Dessert fraise</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Oreo</h3>
-                            <span class="price-tag">3€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Dessert Oreo</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Nutella</h3>
-                            <span class="price-tag">3€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Dessert Nutella</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Daim</h3>
-                            <span class="price-tag">3€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Dessert Daim</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Tarte Daim</h3><span class="price-tag">2€50</span></div><div class="menu-card-content"><p>Tarte au chocolat Daim</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Manguier</h3><span class="price-tag">3€50</span></div><div class="menu-card-content"><p>Dessert mangue</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Fraisier</h3><span class="price-tag">3€50</span></div><div class="menu-card-content"><p>Dessert fraise</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Oreo</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Oreo</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Nutella</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Nutella</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Daim</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Daim</p></div></div>
                 </div>
             </div>
 
-            <!-- Boissons -->
             <div class="menu-category">
                 <h3 class="category-title">🧃 Boissons</h3>
                 <div class="menu-grid">
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Boissons 33cl</h3>
-                            <span class="price-tag">1€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Coca, Oasis, Orangina, Fanta, Sprite, 7UP, Lipton...</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Perrier 33cl</h3>
-                            <span class="price-tag">1€50</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Eau gazeuse</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Eau 55cl</h3>
-                            <span class="price-tag">1€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Eau plate</p>
-                        </div>
-                    </div>
-                    <div class="menu-card">
-                        <div class="menu-card-header">
-                            <h3>Capri-Sun</h3>
-                            <span class="price-tag">1€00</span>
-                        </div>
-                        <div class="menu-card-content">
-                            <p>Jus pour enfant</p>
-                        </div>
-                    </div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Boissons 33cl</h3><span class="price-tag">1€50</span></div><div class="menu-card-content"><p>Coca, Oasis, Orangina, Fanta, Sprite, 7UP, Lipton...</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Perrier 33cl</h3><span class="price-tag">1€50</span></div><div class="menu-card-content"><p>Eau gazeuse</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Eau 55cl</h3><span class="price-tag">1€00</span></div><div class="menu-card-content"><p>Eau plate</p></div></div>
+                    <div class="menu-card"><div class="menu-card-header"><h3>Capri-Sun</h3><span class="price-tag">1€00</span></div><div class="menu-card-content"><p>Jus pour enfant</p></div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section class="about" id="about">
         <div class="container">
             <h2 class="section-title">À Propos de Best Cook</h2>
@@ -1652,7 +1228,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
+    <!-- Gallery -->
     <section class="gallery" id="galerie">
         <div class="container">
             <h2 class="section-title">Nos Spécialités</h2>
@@ -1670,14 +1246,14 @@
                     <div class="gallery-overlay">Nos Frites</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1561758033-d8f14f7f9f5f?w=400" alt="Tacos">
+                    <img src="https://images.unsplash.com/photo-1561758033-d8f14f7f9f5f?w=400" alt="Bowls">
                     <div class="gallery-overlay">Nos Bowls</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Info Section -->
+    <!-- Info -->
     <section class="info">
         <div class="container">
             <div class="info-grid">
@@ -1700,72 +1276,49 @@
         </div>
     </section>
 
-    <!-- Delivery Section -->
+    <!-- Delivery -->
     <section class="delivery">
         <div class="container">
             <h2 class="section-title">Livraison Disponible</h2>
-            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Commandez vos plats préférés via nos partenaires</p>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: #666;">Commandez vos plats préférés via nos partenaires</p>
             <div class="delivery-grid">
-                <div class="delivery-badge">
-                    <span>🛵</span> Deliveroo
-                </div>
-                <div class="delivery-badge">
-                    <span>🚗</span> Uber Eats
-                </div>
-                <div class="delivery-badge">
-                    <span>📱</span> Just Eat
-                </div>
+                <div class="delivery-badge"><span>🛵</span> Deliveroo</div>
+                <div class="delivery-badge"><span>🚗</span> Uber Eats</div>
+                <div class="delivery-badge"><span>📱</span> Just Eat</div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section class="contact" id="contact">
         <div class="container">
             <h2 class="section-title">Contactez-nous</h2>
             <div class="contact-grid">
                 <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Nom</label>
-                            <input type="text" id="name" placeholder="Votre nom">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="votre@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Téléphone</label>
-                            <input type="tel" id="phone" placeholder="06 XX XX XX XX">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" rows="4" placeholder="Votre message..."></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">Envoyer</button>
-                    </form>
+                    <div class="form-group">
+                        <label for="name">Nom</label>
+                        <input type="text" id="name" placeholder="Votre nom" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="votre@email.com" autocomplete="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" placeholder="06 XX XX XX XX" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="4" placeholder="Votre message..."></textarea>
+                    </div>
+                    <button type="button" class="submit-btn" id="submitBtn">Envoyer</button>
                 </div>
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <span>📍</span>
-                        <p>145 Avenue de Saint Ouen, 75017 Paris</p>
-                    </div>
-                    <div class="contact-item">
-                        <span>📞</span>
-                        <p>01.40.79.19.23</p>
-                    </div>
-                    <div class="contact-item">
-                        <span>🕐</span>
-                        <p>Ouvert tous les jours de 11h00 à minuit</p>
-                    </div>
-                    <div class="contact-item">
-                        <span>✉️</span>
-                        <p>contact@bestcook.fr</p>
-                    </div>
-                    <div class="contact-item">
-                        <span>☪️</span>
-                        <p>100% Halal Certifié</p>
-                    </div>
+                    <div class="contact-item"><span>📍</span><p>145 Avenue de Saint Ouen, 75017 Paris</p></div>
+                    <div class="contact-item"><span>📞</span><p><a href="tel:0140791923" style="color:inherit;text-decoration:none;font-weight:700;">01.40.79.19.23</a></p></div>
+                    <div class="contact-item"><span>🕐</span><p>Ouvert tous les jours de 11h00 à minuit</p></div>
+                    <div class="contact-item"><span>✉️</span><p>contact@bestcook.fr</p></div>
+                    <div class="contact-item"><span>☪️</span><p>100% Halal Certifié</p></div>
                 </div>
             </div>
         </div>
@@ -1775,54 +1328,73 @@
     <footer>
         <div class="footer-logo">BEST COOK</div>
         <div class="social-links">
-            <a href="https://www.snapchat.com/add/bestcook75017" target="_blank">
-                👻 bestcook75017
-            </a>
-            <a href="https://www.facebook.com/bestcook" target="_blank">
-                📘 best cook
-            </a>
-            <a href="https://www.instagram.com/bestcook75017/" target="_blank">
-                📸 bestcook75017
-            </a>
+            <a href="https://www.snapchat.com/add/bestcook75017" target="_blank" rel="noopener">👻 bestcook75017</a>
+            <a href="https://www.facebook.com/bestcook" target="_blank" rel="noopener">📘 best cook</a>
+            <a href="https://www.instagram.com/bestcook75017/" target="_blank" rel="noopener">📸 bestcook75017</a>
         </div>
         <p>145 Avenue de Saint Ouen, 75017 Paris | 01.40.79.19.23</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">100% Halal - Ouvert tous les jours de 11h00 à minuit</p>
-        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 Best Cook - Tous droits réservés</p>
+        <p style="margin-top: 0.4rem; opacity: 0.7;">100% Halal - Ouvert tous les jours de 11h00 à minuit</p>
+        <p style="margin-top: 0.8rem; font-size: 0.75rem; opacity: 0.5;">&copy; 2026 Best Cook - Tous droits réservés</p>
     </footer>
 
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // === BURGER MENU MOBILE ===
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        burgerBtn.addEventListener('click', () => {
+            burgerBtn.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+        });
+
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                burgerBtn.classList.remove('open');
+                mobileNav.classList.remove('open');
             });
         });
 
-        // Scroll reveal animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
+        // Fermer si clic hors du menu
+        document.addEventListener('click', (e) => {
+            if (!burgerBtn.contains(e.target) && !mobileNav.contains(e.target)) {
+                burgerBtn.classList.remove('open');
+                mobileNav.classList.remove('open');
+            }
+        });
 
+        // === SMOOTH SCROLLING ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const offset = 65;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // === SCROLL REVEAL ===
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.08, rootMargin: "0px 0px -30px 0px" });
 
         document.querySelectorAll('.menu-card, .gallery-item, .info-card, .nouveaute-card').forEach(el => {
             el.classList.add('scroll-reveal');
             observer.observe(el);
         });
 
-        // Form submission
-        document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
+        // === FORM ===
+        document.getElementById('submitBtn').addEventListener('click', () => {
+            const name = document.getElementById('name').value.trim();
+            if (!name) { alert('Veuillez entrer votre nom.'); return; }
             alert('Merci pour votre message ! Nous vous contacterons bientôt.');
         });
     </script>
