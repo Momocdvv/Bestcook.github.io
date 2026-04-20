@@ -1485,6 +1485,35 @@
             .bs-card { width: 170px; }
             .bs-card-img-wrap { height: 115px; }
         }
+
+        /* Image unique crousty */
+        .crousty-solo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 8%;
+            margin-top: -1rem;
+            text-align: center;
+        }
+
+        .crousty-img {
+            width: 90%;
+            max-width: 420px;
+            height: auto;
+            object-fit: contain;
+            background: transparent;
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 480px) {
+            .crousty-img {
+                width: 85%;
+                max-width: 320px;
+            }
+        }
     </style>
 </head>
 <body>
