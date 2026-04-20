@@ -1304,12 +1304,12 @@
             font-size: 0.85rem;
         }
 
-        /* Conteneur principal : vedette à gauche, grille à droite */
+        /* Conteneur principal : vedette full-width en haut, 2×2 en dessous */
         .bs-layout {
             display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 1.2rem;
-            max-width: 860px;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 700px;
             margin: 0 auto;
             position: relative; z-index: 1;
             align-items: stretch;
@@ -1336,33 +1336,40 @@
             border: 2px solid var(--orange);
             box-shadow: 0 0 0 4px rgba(244,162,97,0.12);
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: stretch;
+            grid-column: 1 / -1;
         }
         .bs-featured.bs-visible {
             box-shadow: 0 18px 45px rgba(0,0,0,0.45), 0 0 0 4px rgba(244,162,97,0.18);
         }
-        .bs-featured .bs-img-wrap { height: 200px; flex-shrink: 0; }
-        .bs-featured .bs-emoji    { font-size: 4rem; }
+        .bs-featured .bs-img-wrap {
+            width: 160px;
+            flex-shrink: 0;
+            border-radius: 0;
+        }
+        .bs-featured .bs-emoji { font-size: 4rem; }
 
         .bs-featured .bs-card-body {
-            padding: 1.2rem 1.3rem 1.4rem;
+            padding: 1.3rem 1.5rem;
             flex: 1;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             gap: 0.5rem;
+            text-align: left;
         }
 
         .bs-featured .bs-card-body h3 {
             color: var(--orange);
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             line-height: 1.2;
         }
 
         .bs-featured .bs-card-body p {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.82rem;
-            line-height: 1.45;
-            flex: 1;
+            color: rgba(255,255,255,0.65);
+            font-size: 0.85rem;
+            line-height: 1.5;
         }
 
         .bs-featured .bs-price {
@@ -1433,16 +1440,13 @@
         /* ── Mobile : vedette full width, grille 2×2 dessous ── */
         @media (max-width: 700px) {
             .bs-layout {
-                grid-template-columns: 1fr;
                 max-width: 100%;
             }
-            .bs-featured {
-                flex-direction: column;
-            }
-            .bs-featured .bs-img-wrap { height: 150px; }
-            .bs-featured .bs-emoji { font-size: 3.5rem; }
-            .bs-featured .bs-card-body { padding: 1rem 1.2rem 1.2rem; }
-            .bs-featured .bs-card-body h3 { font-size: 1.05rem; }
+            .bs-featured .bs-img-wrap { width: 120px; }
+            .bs-featured .bs-emoji { font-size: 3rem; }
+            .bs-featured .bs-card-body { padding: 1rem 1.1rem; }
+            .bs-featured .bs-card-body h3 { font-size: 1rem; }
+            .bs-featured .bs-card-body p { font-size: 0.78rem; }
             .bs-small .bs-img-wrap { height: 70px; }
             .bs-small .bs-emoji { font-size: 1.8rem; }
             .bs-small .bs-card-body h3 { font-size: 0.78rem; }
@@ -1601,47 +1605,27 @@
                 Une explosion de saveurs croustillantes qui va vous surprendre !
             </p>
         </div>
-        <div class="nouveautes-scroll-wrapper">
-            <div class="nouveautes-grid">
+        <div class="crousty-duo">
                 <div class="nouveaute-card">
                     <span class="nouveaute-badge">NEW</span>
-                    <img src="images/RizCroustyM.jpeg" alt="Riz Crousty M" class="nouveaute-image">
+                    <img src="images/RizCroustyM.jpeg" alt="Riz Crousty" class="nouveaute-image">
                     <div class="nouveaute-content">
                         <h3>Riz Crousty</h3>
-                        <p>Poulet crousty sauce secrète sur riz</p>
+                        <p>Poulet crousty & sauce secrète sur riz parfumé</p>
                         <span class="size-label">Taille M</span>
-                    </div>
-                </div>
-                <div class="nouveaute-card">
-                    <span class="nouveaute-badge">NEW</span>
-                    <img src="images/RizCroustyXL.jpeg" alt="Riz Crousty XL" class="nouveaute-image">
-                    <div class="nouveaute-content">
-                        <h3>Riz Crousty XL</h3>
-                        <p>Poulet crousty sauce secrète sur riz</p>
                         <span class="size-label">Taille XL</span>
-                        <span class="size-label">+ Skittles Sour</span>
                     </div>
                 </div>
                 <div class="nouveaute-card">
                     <span class="nouveaute-badge">NEW</span>
-                    <img src="images/PateCroustyM.jpeg" alt="Pâtes Crousty M" class="nouveaute-image">
+                    <img src="images/PateCroustyM.jpeg" alt="Pâtes Crousty" class="nouveaute-image">
                     <div class="nouveaute-content">
                         <h3>Pâtes Crousty</h3>
-                        <p>Poulet crousty sauce secrète sur pâtes</p>
+                        <p>Poulet crousty & sauce secrète sur pâtes fraîches</p>
                         <span class="size-label">Taille M</span>
-                    </div>
-                </div>
-                <div class="nouveaute-card">
-                    <span class="nouveaute-badge">NEW</span>
-                    <img src="images/PateCroustyXL.jpeg" alt="Pâtes Crousty XL" class="nouveaute-image">
-                    <div class="nouveaute-content">
-                        <h3>Pâtes Crousty XL</h3>
-                        <p>Poulet crousty sauce secrète sur pâtes</p>
                         <span class="size-label">Taille XL</span>
-                        <span class="size-label">+ Skittles Original</span>
                     </div>
                 </div>
-            </div>
         </div>
     </section>
 
@@ -1795,29 +1779,6 @@
                         <li><span class="nearby-label">⚽ <strong>Stade de France</strong></span><span class="nearby-time">10 min en métro</span></li>
                         <li><span class="nearby-label">🛍️ <strong>Marché aux Puces</strong></span><span class="nearby-time">5 min à pied</span></li>
                     </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Info -->
-    <section class="info">
-        <div class="container">
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-icon">📍</div>
-                    <h3>Adresse</h3>
-                    <p><button class="addr-trigger" onclick="openNavModal()">145 Avenue de Saint Ouen<br>75017 Paris</button></p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">⏰</div>
-                    <h3>Horaires</h3>
-                    <p>Ouvert Tous les Jours<br>11h00 - Minuit</p>
-                </div>
-                <div class="info-card">
-                    <div class="info-icon">📞</div>
-                    <h3>Téléphone</h3>
-                    <p>01.40.79.19.23<br>Commande & Réservation</p>
                 </div>
             </div>
         </div>
