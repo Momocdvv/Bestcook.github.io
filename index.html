@@ -1349,19 +1349,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .bs-tag {
-            display: inline-block;
-            background: rgba(244,162,97,0.2);
-            color: var(--orange);
-            font-size: 0.72rem;
-            font-weight: 700;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            border: 1px solid rgba(244,162,97,0.3);
-            width: fit-content;
+            gap: 0.5rem;
         }
 
         .bs-featured .bs-card-body h3 {
@@ -1446,21 +1434,15 @@
         @media (max-width: 700px) {
             .bs-layout {
                 grid-template-columns: 1fr;
-                max-width: 420px;
+                max-width: 100%;
             }
             .bs-featured {
-                flex-direction: row;
-                align-items: stretch;
+                flex-direction: column;
             }
-            .bs-featured .bs-img-wrap {
-                width: 120px;
-                height: auto;
-                flex-shrink: 0;
-                border-radius: 0;
-            }
-            .bs-featured .bs-emoji { font-size: 3rem; }
-            .bs-featured .bs-card-body { padding: 1rem 1.1rem; }
-            .bs-featured .bs-card-body h3 { font-size: 1rem; }
+            .bs-featured .bs-img-wrap { height: 150px; }
+            .bs-featured .bs-emoji { font-size: 3.5rem; }
+            .bs-featured .bs-card-body { padding: 1rem 1.2rem 1.2rem; }
+            .bs-featured .bs-card-body h3 { font-size: 1.05rem; }
             .bs-small .bs-img-wrap { height: 70px; }
             .bs-small .bs-emoji { font-size: 1.8rem; }
             .bs-small .bs-card-body h3 { font-size: 0.78rem; }
@@ -1679,7 +1661,6 @@
                     <div class="bs-emoji">🍔</div>
                 </div>
                 <div class="bs-card-body">
-                    <div class="bs-tag">⭐ Favori absolu</div>
                     <h3>La Best</h3>
                     <p>Mozza, Merguez, Viande hachée, Lardons, Sauce BBQ</p>
                     <span class="bs-price">Burger Gourmet</span>
