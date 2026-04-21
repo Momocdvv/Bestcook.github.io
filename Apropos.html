@@ -1575,6 +1575,17 @@
             .bottom-banner-sep { width: 100%; height: 1px; }
             .bottom-banner-item { padding: 0 0.5rem; min-width: 0; width: 100%; }
         }
+
+        /* Badge Halal footer */
+        .halal-footer-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+            margin-left: 0.3rem;
+        }
+        .halal-footer-badge:hover { opacity: 1; }
     </style>
     <style>
         .page-hero {
@@ -1671,8 +1682,8 @@
             <li><a href="index.html">Accueil</a></li>
             <li><a href="index.html#nouveautes">Nouveautés</a></li>
             <li><a href="menu.html">Menu</a></li>
-            <li><a href="apropos.html" style="color:var(--orange);">À propos</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="Apropos.html" style="color:var(--orange);">À propos</a></li>
+            <li><a href="Contact.html">Contact</a></li>
         </ul>
         <div class="mobile-menu" id="burgerBtn"><span></span><span></span><span></span></div>
     </nav>
@@ -1681,8 +1692,8 @@
         <a href="index.html">🏠 Accueil</a>
         <a href="index.html#nouveautes">🔥 Nouveautés</a>
         <a href="menu.html">🍔 Menu</a>
-        <a href="apropos.html" style="color:var(--orange);">ℹ️ À propos</a>
-        <a href="contact.html">📞 Contact</a>
+        <a href="Apropos.html" style="color:var(--orange);">ℹ️ À propos</a>
+        <a href="Contact.html">📞 Contact</a>
     </nav>
 
     <div class="page-hero">
@@ -1781,6 +1792,18 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                 contact@bestcook.fr
             </a>
+            <div class="halal-footer-badge" aria-label="Halal certifié">
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="22" cy="22" r="21" stroke="rgba(244,162,97,0.6)" stroke-width="1.5"/>
+                    <circle cx="22" cy="22" r="17" fill="rgba(244,162,97,0.12)"/>
+                    <!-- Croissant -->
+                    <path d="M25 13.5a9 9 0 1 0 0 17 7 7 0 1 1 0-17z" fill="#F4A261"/>
+                    <!-- Étoile -->
+                    <polygon points="30,13 30.9,15.7 33.8,15.7 31.5,17.4 32.4,20.1 30,18.4 27.6,20.1 28.5,17.4 26.2,15.7 29.1,15.7" fill="#F4A261"/>
+                    <!-- Texte HALAL -->
+                    <text x="22" y="36" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="5.5" font-weight="800" fill="#F4A261" letter-spacing="1">HALAL</text>
+                </svg>
+            </div>
         </div>
         <!-- Mini carte -->
         <div class="footer-map">
