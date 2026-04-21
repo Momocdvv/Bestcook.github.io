@@ -1328,10 +1328,15 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
             position: relative; z-index: 1;
             padding: 0 5%;
+            justify-items: center;
+        }
+
+        .bs-grid4 .bs-small {
+            width: 100%;
         }
 
         .bs-small { transition-delay: 0.1s; }
@@ -1514,6 +1519,61 @@
                 width: 100%;
                 max-width: 480px;
             }
+        }
+
+        /* ===== BANDEAU BAS DE PAGE ===== */
+        .bottom-banner {
+            background: var(--dark-green);
+            padding: 1.5rem 5%;
+            border-top: 3px solid var(--orange);
+        }
+
+        .bottom-banner-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .bottom-banner-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+            padding: 0.4rem 1.5rem;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .bottom-banner-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+        .bottom-banner-item strong {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--orange);
+            margin-bottom: 0.1rem;
+        }
+
+        .bottom-banner-sep {
+            width: 1px;
+            height: 42px;
+            background: rgba(255,255,255,0.15);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 600px) {
+            .bottom-banner-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.9rem;
+            }
+            .bottom-banner-sep { width: 100%; height: 1px; }
+            .bottom-banner-item { padding: 0 0.5rem; min-width: 0; width: 100%; }
         }
     </style>
 </head>
@@ -1768,9 +1828,6 @@
                     <button type="button" class="submit-btn" id="submitBtn">Envoyer</button>
                 </div>
                 <div class="contact-info">
-                    <div class="contact-item"><span>📍</span><p><button class="addr-trigger" onclick="openNavModal()">145 Avenue de Saint Ouen, 75017 Paris</button></p></div>
-                    <div class="contact-item"><span>📞</span><p><a href="tel:0140791923" style="color:inherit;text-decoration:none;font-weight:700;">01.40.79.19.23</a></p></div>
-                    <div class="contact-item"><span>🕐</span><p>Ouvert tous les jours de 11h00 à minuit</p></div>
                     <div class="contact-item"><span>✉️</span><p>contact@bestcook.fr</p></div>
                     <div class="contact-item"><span>☪️</span><p>100% Halal Certifié</p></div>
                 </div>
@@ -1782,9 +1839,26 @@
     <footer>
         <div class="footer-logo">BEST COOK</div>
         <div class="social-links">
-            <a href="https://www.snapchat.com/add/bestcook75017" target="_blank" rel="noopener">👻 bestcook75017</a>
-            <a href="https://www.facebook.com/bestcook" target="_blank" rel="noopener">📘 best cook</a>
-            <a href="https://www.instagram.com/bestcook75017/" target="_blank" rel="noopener">📸 bestcook75017</a>
+            <a href="https://www.snapchat.com/add/bestcook75017" target="_blank" rel="noopener" aria-label="Snapchat">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.002 2c-2.762 0-5.5 1.833-5.5 5.5v1.3c-.4.1-.9.2-1.3.6-.3.3-.2.8.1 1.1.5.4 1.1.5 1.6.5-.3.6-.8 1.2-1.5 1.6-.4.2-.5.7-.2 1 .6.7 1.8.8 2.6.9.2.5.5 1.3 1.2 1.3.3 0 .7-.1 1.3-.3.5-.2 1-.3 1.7-.3s1.2.1 1.7.3c.6.2 1 .3 1.3.3.7 0 1-.8 1.2-1.3.8-.1 2-.2 2.6-.9.3-.3.2-.8-.2-1-.7-.4-1.2-1-1.5-1.6.5 0 1.1-.1 1.6-.5.3-.3.4-.8.1-1.1-.4-.4-.9-.5-1.3-.6V7.5C17.502 3.833 14.764 2 12.002 2z"/>
+                </svg>
+                bestcook75017
+            </a>
+            <a href="https://www.facebook.com/people/Best-Cook/61558583939785/" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+                best cook
+            </a>
+            <a href="https://www.instagram.com/bestcook75017/" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+                </svg>
+                bestcook75017
+            </a>
         </div>
         <p><button class="addr-trigger" onclick="openNavModal()" style="color:var(--white);">145 Avenue de Saint Ouen, 75017 Paris</button> | 01.40.79.19.23</p>
         <p style="margin-top: 0.4rem; opacity: 0.7;">100% Halal - Ouvert tous les jours de 11h00 à minuit</p>
