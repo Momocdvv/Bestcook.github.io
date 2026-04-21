@@ -1575,6 +1575,18 @@
             .bottom-banner-sep { width: 100%; height: 1px; }
             .bottom-banner-item { padding: 0 0.5rem; min-width: 0; width: 100%; }
         }
+
+        /* Mini carte footer */
+        .footer-map {
+            width: 100%;
+            max-width: 480px;
+            height: 170px;
+            margin: 1.2rem auto 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(244,162,97,0.3);
+        }
+        .footer-map iframe { width:100%; height:100%; border:none; display:block; }
     </style>
 </head>
 <body>
@@ -1590,8 +1602,8 @@
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#nouveautes">Nouveautés</a></li>
             <li><a href="menu.html">Menu</a></li>
-            <li><a href="#about">À propos</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="apropos.html">À propos</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
         <!-- Mobile burger -->
         <div class="mobile-menu" id="burgerBtn" aria-label="Menu" role="button">
@@ -1608,8 +1620,8 @@
         <a href="#accueil" class="mobile-nav-link">🏠 Accueil</a>
         <a href="#nouveautes" class="mobile-nav-link">🔥 Nouveautés</a>
         <a href="menu.html" class="mobile-nav-link">🍔 Menu</a>
-        <a href="#about" class="mobile-nav-link">ℹ️ À propos</a>
-        <a href="#contact" class="mobile-nav-link">📞 Contact</a>
+        <a href="apropos.html">ℹ️ À propos</a>
+        <a href="contact.html">📞 Contact</a>
     </nav>
 
 
@@ -1693,100 +1705,6 @@
         </div>
     </section>
 
-    <!-- About -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">À Propos de Best Cook</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <h3>Votre Fast Food Halal au Cœur du 17ème</h3>
-                    <p>Best Cook vous accueille dans une ambiance chaleureuse et conviviale pour déguster les meilleurs burgers, pizzas, et spécialités fast food 100% Halal. Situé au <strong>145 Avenue de Saint Ouen</strong>, nous vous proposons une cuisine de qualité avec des ingrédients frais et soigneusement sélectionnés.</p>
-                    <br>
-                    <p>Notre engagement : vous offrir une expérience culinaire unique avec des produits Halal certifiés, préparés avec passion par notre équipe. Découvrez nos <strong>nouveautés Crousty</strong> : Riz Crousty et Pâtes Crousty, une explosion de saveurs croustillantes !</p>
-                    <ul class="features-list">
-                        <li>100% Halal certifié</li>
-                        <li>Produits frais et qualité premium</li>
-                        <li>Nouveautés exclusives Crousty</li>
-                        <li>Service rapide et souriant</li>
-                        <li>Livraison disponible</li>
-                        <li>Ouvert 7j/7 jusqu'à minuit</li>
-                    </ul>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800" alt="Intérieur Best Cook">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Accès & Proximité -->
-    <section class="acces">
-        <div class="container">
-            <h2 class="section-title">Nous Trouver</h2>
-
-            <!-- Bandeau infos vert -->
-            <div class="acces-infobanner">
-                <div class="acces-infobanner-item">
-                    <span>📍</span>
-                    <div>
-                        <strong>Adresse</strong>
-                        <button class="addr-trigger" onclick="openNavModal()" style="color:var(--white);display:block;font-size:0.85rem;opacity:0.9;font-weight:600;">145 Av. de Saint Ouen, 75017 Paris</button>
-                    </div>
-                </div>
-                <div class="acces-infobanner-sep"></div>
-                <div class="acces-infobanner-item">
-                    <span>🕐</span>
-                    <div>
-                        <strong>Horaires</strong>
-                        <span style="display:block;font-size:0.85rem;opacity:0.9;">Tous les jours · 11h00 – Minuit</span>
-                    </div>
-                </div>
-                <div class="acces-infobanner-sep"></div>
-                <div class="acces-infobanner-item">
-                    <span>📞</span>
-                    <div>
-                        <strong>Téléphone</strong>
-                        <a href="tel:0140791923" style="display:block;color:var(--orange);font-size:0.9rem;font-weight:700;text-decoration:none;">01.40.79.19.23</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Carte Google Maps -->
-            <div class="map-wrapper">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.197276!2d2.3267!3d48.8958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fcd0e226b29%3A0x5073d5ab7da45f06!2s145+Av.+de+Saint-Ouen%2C+75017+Paris!5e0!3m2!1sfr!2sfr!4v1713600000000!5m2!1sfr!2sfr"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="Best Cook - 145 Avenue de Saint Ouen Paris 17">
-                </iframe>
-            </div>
-
-            <!-- Métro + Proximité -->
-            <div class="acces-grid">
-                <div class="acces-card">
-                    <div class="acces-icon">🚇</div>
-                    <h3>Accès facile en métro</h3>
-                    <p class="acces-line"><strong>Ligne 13</strong> — Station <strong>Porte de Saint-Ouen</strong></p>
-                    <p class="acces-detail">Sortie directe sur l'Avenue de Saint Ouen · à 1 min à pied du restaurant</p>
-                </div>
-                <div class="acces-card">
-                    <div class="acces-icon">🗺️</div>
-                    <h3>À proximité</h3>
-                    <ul class="nearby-list">
-                        <li><span class="nearby-label">🎨 <strong>Montmartre / Sacré-Cœur</strong></span><span class="nearby-time">15 min à pied</span></li>
-                        <li><span class="nearby-label">🎡 <strong>Moulin Rouge</strong></span><span class="nearby-time">10 min</span></li>
-                        <li><span class="nearby-label">🎭 <strong>Opéra Garnier</strong></span><span class="nearby-time">20 min en métro</span></li>
-                        <li><span class="nearby-label">🏛️ <strong>Arc de Triomphe</strong></span><span class="nearby-time">20 min en métro</span></li>
-                        <li><span class="nearby-label">🌳 <strong>Parc Monceau</strong></span><span class="nearby-time">15 min en métro</span></li>
-                        <li><span class="nearby-label">⚽ <strong>Stade de France</strong></span><span class="nearby-time">10 min en métro</span></li>
-                        <li><span class="nearby-label">🛍️ <strong>Marché aux Puces</strong></span><span class="nearby-time">5 min à pied</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Delivery -->
     <section class="delivery">
         <div class="container">
@@ -1803,62 +1721,30 @@
         </div>
     </section>
 
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Contactez-nous</h2>
-            <div class="contact-grid">
-                <div class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Nom</label>
-                        <input type="text" id="name" placeholder="Votre nom" autocomplete="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="votre@email.com" autocomplete="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" placeholder="06 XX XX XX XX" autocomplete="tel">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="4" placeholder="Votre message..."></textarea>
-                    </div>
-                    <button type="button" class="submit-btn" id="submitBtn">Envoyer</button>
-                </div>
-                <div class="contact-info">
-                    <div class="contact-item"><span>✉️</span><p>contact@bestcook.fr</p></div>
-                    <div class="contact-item"><span>☪️</span><p>100% Halal Certifié</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <div class="footer-logo">BEST COOK</div>
         <div class="social-links">
             <a href="https://www.snapchat.com/add/bestcook75017" target="_blank" rel="noopener" aria-label="Snapchat">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.002 2c-2.762 0-5.5 1.833-5.5 5.5v1.3c-.4.1-.9.2-1.3.6-.3.3-.2.8.1 1.1.5.4 1.1.5 1.6.5-.3.6-.8 1.2-1.5 1.6-.4.2-.5.7-.2 1 .6.7 1.8.8 2.6.9.2.5.5 1.3 1.2 1.3.3 0 .7-.1 1.3-.3.5-.2 1-.3 1.7-.3s1.2.1 1.7.3c.6.2 1 .3 1.3.3.7 0 1-.8 1.2-1.3.8-.1 2-.2 2.6-.9.3-.3.2-.8-.2-1-.7-.4-1.2-1-1.5-1.6.5 0 1.1-.1 1.6-.5.3-.3.4-.8.1-1.1-.4-.4-.9-.5-1.3-.6V7.5C17.502 3.833 14.764 2 12.002 2z"/>
-                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.002 2c-2.762 0-5.5 1.833-5.5 5.5v1.3c-.4.1-.9.2-1.3.6-.3.3-.2.8.1 1.1.5.4 1.1.5 1.6.5-.3.6-.8 1.2-1.5 1.6-.4.2-.5.7-.2 1 .6.7 1.8.8 2.6.9.2.5.5 1.3 1.2 1.3.3 0 .7-.1 1.3-.3.5-.2 1-.3 1.7-.3s1.2.1 1.7.3c.6.2 1 .3 1.3.3.7 0 1-.8 1.2-1.3.8-.1 2-.2 2.6-.9.3-.3.2-.8-.2-1-.7-.4-1.2-1-1.5-1.6.5 0 1.1-.1 1.6-.5.3-.3.4-.8.1-1.1-.4-.4-.9-.5-1.3-.6V7.5C17.502 3.833 14.764 2 12.002 2z"/></svg>
                 bestcook75017
             </a>
             <a href="https://www.facebook.com/people/Best-Cook/61558583939785/" target="_blank" rel="noopener" aria-label="Facebook">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                 best cook
             </a>
             <a href="https://www.instagram.com/bestcook75017/" target="_blank" rel="noopener" aria-label="Instagram">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="2"/>
-                    <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/>
-                    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
-                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
                 bestcook75017
             </a>
+            <a href="mailto:contact@bestcook.fr" aria-label="Email">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="2"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                contact@bestcook.fr
+            </a>
+        </div>
+        <!-- Mini carte footer -->
+        <div class="footer-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.197276!2d2.3267!3d48.8958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fcd0e226b29%3A0x5073d5ab7da45f06!2s145+Av.+de+Saint-Ouen%2C+75017+Paris!5e0!3m2!1sfr!2sfr!4v1713600000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Best Cook localisation"></iframe>
         </div>
         <p><button class="addr-trigger" onclick="openNavModal()" style="color:var(--white);">145 Avenue de Saint Ouen, 75017 Paris</button> | 01.40.79.19.23</p>
         <p style="margin-top: 0.4rem; opacity: 0.7;">100% Halal - Ouvert tous les jours de 11h00 à minuit</p>
@@ -1956,12 +1842,7 @@
             }
         }
 
-        // === FORM ===
-        document.getElementById('submitBtn').addEventListener('click', () => {
-            const name = document.getElementById('name').value.trim();
-            if (!name) { alert('Veuillez entrer votre nom.'); return; }
-            alert('Merci pour votre message ! Nous vous contacterons bientôt.');
-        });
+
     </script>
 
 
