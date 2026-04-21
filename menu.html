@@ -1260,98 +1260,111 @@
         }
 
         /* ── Best Sellers layout ── */
-        .bs-podium {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1.1rem;
-            align-items: end;
-            max-width: 860px;
-            margin: 0 auto;
-            position: relative; z-index: 1;
-            padding: 0 5%;
+        .bestsellers {
+            background: linear-gradient(160deg, #0d2b21 0%, #1B4D3E 55%, #163d31 100%);
+            padding: 4rem 5% 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .bestsellers::before {
+            content: '';
+            position: absolute;
+            width: 350px; height: 350px;
+            background: radial-gradient(circle, rgba(244,162,97,0.07) 0%, transparent 70%);
+            top: -80px; right: -80px;
+            pointer-events: none;
         }
 
+        .bs-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative; z-index: 1;
+        }
+
+        .bs-badge {
+            display: inline-block;
+            background: var(--orange);
+            color: var(--dark-green);
+            padding: 0.35rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .bs-title {
+            color: var(--white);
+            font-size: clamp(1.7rem, 5vw, 2.6rem);
+            margin-bottom: 0.3rem;
+        }
+
+        .bs-subtitle {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+
+        /* Carte générique */
         .bs-card {
             background: rgba(255,255,255,0.07);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 16px;
             overflow: hidden;
-            position: relative;
             opacity: 0;
-            transition: opacity 0.55s ease, transform 0.55s ease, background 0.25s, box-shadow 0.25s;
-            backdrop-filter: blur(4px);
+            transition: opacity 0.5s ease, transform 0.5s ease, background 0.25s;
+            transform: translateY(18px);
+        }
+        .bs-card.bs-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .bs-card:hover { background: rgba(255,255,255,0.13); }
+
+        /* --- Carte vedette --- */
+
+        /* Grille 4 best sellers */
+        .bs-grid4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative; z-index: 1;
+            padding: 0 5%;
+            justify-items: center;
         }
 
-        /* hauteurs podium — carte centrale plus haute */
-        .bs-card:nth-child(1) .bs-img-wrap { height: 100px; }
-        .bs-card:nth-child(2) .bs-img-wrap { height: 120px; }
-        .bs-card:nth-child(3) .bs-img-wrap { height: 150px; }
-        .bs-card:nth-child(4) .bs-img-wrap { height: 120px; }
-        .bs-card:nth-child(5) .bs-img-wrap { height: 100px; }
-
-        /* décalage vertical pour effet podium */
-        .bs-card:nth-child(1) { transform: translateY(22px); }
-        .bs-card:nth-child(2) { transform: translateY(10px); }
-        .bs-card:nth-child(3) {
-            transform: translateY(-6px);
-            border: 2px solid var(--orange);
-            box-shadow: 0 0 0 4px rgba(244,162,97,0.15);
-        }
-        .bs-card:nth-child(4) { transform: translateY(10px); }
-        .bs-card:nth-child(5) { transform: translateY(22px); }
-
-        /* état visible après animation */
-        .bs-card.bs-visible { opacity: 1; }
-        .bs-card.bs-visible:nth-child(1) { transform: translateY(22px); }
-        .bs-card.bs-visible:nth-child(2) { transform: translateY(10px); }
-        .bs-card.bs-visible:nth-child(3) {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 45px rgba(0,0,0,0.5), 0 0 0 4px rgba(244,162,97,0.15);
-        }
-        .bs-card.bs-visible:nth-child(4) { transform: translateY(10px); }
-        .bs-card.bs-visible:nth-child(5) { transform: translateY(22px); }
-
-        .bs-card:hover {
-            background: rgba(255,255,255,0.14);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        .bs-grid4 .bs-small {
+            width: 100%;
         }
 
-        .bs-img-wrap {
-            position: relative;
-            background: linear-gradient(160deg, rgba(27,77,62,0.5), rgba(10,30,22,0.85));
-            overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-        }
+        .bs-small { transition-delay: 0.1s; }
+        .bs-small:nth-child(2) { transition-delay: 0.18s; }
+        .bs-small:nth-child(3) { transition-delay: 0.26s; }
+        .bs-small:nth-child(4) { transition-delay: 0.34s; }
 
-        .bs-emoji {
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.35));
-        }
+        .bs-small .bs-img-wrap { height: 100px; }
+        .bs-small .bs-emoji    { font-size: 2.5rem; }
 
-        .bs-card-body {
-            padding: 0.65rem 0.7rem 0.8rem;
+        .bs-small .bs-card-body {
+            padding: 0.75rem 0.8rem 0.9rem;
             text-align: center;
         }
 
-        .bs-card-body h3 {
+        .bs-small .bs-card-body h3 {
             color: var(--white);
-            font-size: clamp(0.68rem, 1.3vw, 0.88rem);
-            margin-bottom: 0.25rem;
-            line-height: 1.25;
+            font-size: 0.88rem;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
+            margin-bottom: 0.25rem;
         }
 
-        .bs-card:nth-child(3) .bs-card-body h3 {
-            color: var(--orange);
-            font-size: clamp(0.8rem, 1.6vw, 1rem);
-        }
-
-        .bs-card-body p {
-            font-size: clamp(0.58rem, 1vw, 0.68rem);
-            color: rgba(255,255,255,0.45);
+        .bs-small .bs-card-body p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.7rem;
+            line-height: 1.35;
             margin-bottom: 0.45rem;
-            line-height: 1.3;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -1362,85 +1375,102 @@
             background: rgba(244,162,97,0.15);
             color: var(--orange);
             font-weight: 700;
-            font-size: 0.67rem;
+            font-size: 0.68rem;
             padding: 0.18rem 0.55rem;
             border-radius: 20px;
-            border: 1px solid rgba(244,162,97,0.35);
+            border: 1px solid rgba(244,162,97,0.3);
             display: inline-block;
         }
 
-        .bs-card:nth-child(3) .bs-price {
-            background: var(--orange);
-            color: var(--dark-green);
-            font-size: 0.75rem;
-            padding: 0.22rem 0.75rem;
+        .bs-img-wrap {
+            background: linear-gradient(160deg, rgba(27,77,62,0.5), rgba(10,30,22,0.85));
+            display: flex; align-items: center; justify-content: center;
         }
 
-        /* ── Mobile : 2 colonnes centrées ── */
-        @media (max-width: 700px) {
-            .bs-podium {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto auto;
-                gap: 0.9rem;
-                max-width: 360px;
-                padding: 0 5%;
-                align-items: start;
-            }
+        .bs-emoji { filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3)); }
 
-            /* carte centrale seule sur sa ligne, pleine largeur */
-            .bs-card:nth-child(3) {
-                grid-column: 1 / -1;
-                transform: none;
-                display: flex;
-                flex-direction: row;
-                border: 2px solid var(--orange);
-            }
+        /* ── Mobile : vedette full width, grille 2×2 dessous ── */
+            .bs-featured .bs-emoji { font-size: 3rem; }
+            .bs-featured .bs-card-body { padding: 1rem 1.1rem; }
+            .bs-featured .bs-card-body h3 { font-size: 1rem; }
+            .bs-featured .bs-card-body p { font-size: 0.78rem; }
+            .bs-small .bs-img-wrap { height: 70px; }
+            .bs-small .bs-emoji { font-size: 1.8rem; }
+            .bs-small .bs-card-body h3 { font-size: 0.78rem; }
+        }
 
-            .bs-card:nth-child(3) .bs-img-wrap {
-                width: 110px;
-                height: auto;
-                flex-shrink: 0;
-                border-radius: 0;
-            }
+        @media (max-width: 600px) {
+            .bs-grid4 { gap: 0.8rem; padding: 0 4%; }
+            .bs-small .bs-img-wrap { height: 85px; }
+            .bs-small .bs-emoji { font-size: 2.2rem; }
+            .bs-small .bs-card-body h3 { font-size: 0.82rem; }
+        }
 
-            .bs-card:nth-child(3) .bs-card-body {
-                flex: 1;
-                text-align: left;
-                padding: 0.9rem 1rem;
-                display: flex;
+        /* ===== BANDEAU INFOS SECTION NOUS TROUVER ===== */
+        .acces-infobanner {
+            background: var(--dark-green);
+            border-radius: 14px;
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 16px rgba(27,77,62,0.2);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .acces-infobanner-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+            min-width: 160px;
+            padding: 0.3rem 0;
+            color: var(--white);
+        }
+
+        .acces-infobanner-item > span {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .acces-infobanner-item strong {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--orange);
+            margin-bottom: 0.15rem;
+        }
+
+        .acces-infobanner-sep {
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.15);
+            margin: 0 1.5rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 600px) {
+            .acces-infobanner {
                 flex-direction: column;
-                justify-content: center;
-                gap: 0.3rem;
+                align-items: flex-start;
+                padding: 1rem 1.2rem;
+                gap: 0.8rem;
             }
-
-            /* les 4 autres : reset transform, hauteur fixe */
-            .bs-card:nth-child(1),
-            .bs-card:nth-child(2),
-            .bs-card:nth-child(4),
-            .bs-card:nth-child(5) { transform: none; }
-
-            .bs-card.bs-visible:nth-child(1),
-            .bs-card.bs-visible:nth-child(2),
-            .bs-card.bs-visible:nth-child(4),
-            .bs-card.bs-visible:nth-child(5) { transform: none; }
-
-            .bs-card:nth-child(1) .bs-img-wrap,
-            .bs-card:nth-child(2) .bs-img-wrap,
-            .bs-card:nth-child(4) .bs-img-wrap,
-            .bs-card:nth-child(5) .bs-img-wrap { height: 90px; }
-
-            .bs-card-body h3 { font-size: 0.82rem; }
-            .bs-card:nth-child(3) .bs-card-body h3 { font-size: 0.95rem; }
-            .bs-card-body p { font-size: 0.7rem; }
-            .bs-emoji { font-size: 2rem; }
-            .bs-card:nth-child(3) .bs-emoji { font-size: 2.5rem; }
+            .acces-infobanner-sep {
+                width: 100%;
+                height: 1px;
+                margin: 0;
+            }
+            .acces-infobanner-item { min-width: 0; width: 100%; }
         }
-
 
         /* ===== CARTE GOOGLE MAPS ===== */
         .map-wrapper {
-            margin-top: 2rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 8px 24px rgba(27,77,62,0.15);
@@ -1460,50 +1490,242 @@
             .bs-card { width: 170px; }
             .bs-card-img-wrap { height: 115px; }
         }
+
+        /* Image unique crousty */
+        .crousty-solo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 2%;
+            margin-top: -7rem;
+            text-align: center;
+        }
+
+        .crousty-img {
+            width: 100%;
+            max-width: 660px;
+            height: auto;
+            object-fit: contain;
+            background: transparent;
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 480px) {
+            .crousty-solo { margin-top: -5rem; }
+            .crousty-img {
+                width: 100%;
+                max-width: 480px;
+            }
+        }
+
+        /* ===== BANDEAU BAS DE PAGE ===== */
+        .bottom-banner {
+            background: var(--dark-green);
+            padding: 1.5rem 5%;
+            border-top: 3px solid var(--orange);
+        }
+
+        .bottom-banner-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .bottom-banner-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+            padding: 0.4rem 1.5rem;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .bottom-banner-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+        .bottom-banner-item strong {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--orange);
+            margin-bottom: 0.1rem;
+        }
+
+        .bottom-banner-sep {
+            width: 1px;
+            height: 42px;
+            background: rgba(255,255,255,0.15);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 600px) {
+            .bottom-banner-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.9rem;
+            }
+            .bottom-banner-sep { width: 100%; height: 1px; }
+            .bottom-banner-item { padding: 0 0.5rem; min-width: 0; width: 100%; }
+        }
     </style>
     <style>
-        .menu-page-hero {
+        /* ── PAGE MENU ── */
+        .menu-hero {
             background: var(--dark-green);
-            padding: 5rem 5% 2.5rem;
+            padding: 5rem 5% 2rem;
             text-align: center;
             color: var(--white);
         }
-        .menu-page-hero h1 {
-            font-size: clamp(2rem, 6vw, 3.2rem);
-            color: var(--orange);
-            margin-bottom: 0.5rem;
-        }
-        .menu-page-hero p {
-            opacity: 0.75;
-            font-size: 0.95rem;
-        }
+        .menu-hero h1 { color: var(--orange); font-size: clamp(2rem,6vw,3rem); margin-bottom: 0.3rem; }
+        .menu-hero p  { opacity: 0.65; font-size: 0.9rem; }
         .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.2rem;
-            padding: 0.55rem 1.2rem;
-            background: rgba(255,255,255,0.12);
-            color: var(--white);
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            border: 1px solid rgba(255,255,255,0.3);
-            transition: background 0.2s;
-            min-height: 44px;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            margin-top: 1rem; padding: 0.5rem 1.2rem;
+            background: rgba(255,255,255,0.1); color: var(--white);
+            border-radius: 30px; text-decoration: none;
+            font-weight: 600; font-size: 0.82rem;
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: background 0.2s; min-height: 44px;
         }
-        .back-btn:hover { background: rgba(255,255,255,0.22); }
+        .back-btn:hover { background: rgba(255,255,255,0.2); }
+
+        /* Tabs de navigation du menu */
+        .menu-tabs {
+            position: sticky; top: 60px; z-index: 90;
+            background: var(--dark-green);
+            display: flex; overflow-x: auto; gap: 0;
+            scrollbar-width: none; border-bottom: 2px solid rgba(244,162,97,0.3);
+        }
+        .menu-tabs::-webkit-scrollbar { display: none; }
+        .menu-tab {
+            flex-shrink: 0; padding: 0.75rem 1.1rem;
+            color: rgba(255,255,255,0.6); font-weight: 700;
+            font-size: 0.75rem; letter-spacing: 0.5px;
+            cursor: pointer; border-bottom: 3px solid transparent;
+            margin-bottom: -2px; white-space: nowrap;
+            transition: color 0.2s, border-color 0.2s;
+            background: none; border-top: none; border-left: none; border-right: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .menu-tab.active, .menu-tab:hover { color: var(--orange); border-bottom-color: var(--orange); }
+
+        /* Sections */
+        .menu-section { padding: 2.5rem 4% 1rem; }
+        .menu-section-title {
+            font-size: clamp(1.3rem,4vw,1.8rem); color: var(--dark-green);
+            margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.6rem;
+        }
+        .menu-section-title::after {
+            content: ''; flex: 1; height: 2px;
+            background: linear-gradient(to right, var(--orange), transparent);
+            margin-left: 0.5rem;
+        }
+        .menu-section-sub {
+            font-size: 0.78rem; color: #999; margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        /* Grille de cartes */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+            gap: 0.8rem;
+        }
+
+        /* Carte item */
+        .item-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 0.9rem 0.8rem 0.8rem;
+            box-shadow: 0 2px 10px rgba(27,77,62,0.08);
+            border: 1.5px solid rgba(27,77,62,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex; flex-direction: column; gap: 0.3rem;
+            opacity: 0; transform: translateY(14px);
+            transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.2s;
+        }
+        .item-card.revealed { opacity: 1; transform: translateY(0); }
+        .item-card:active { transform: scale(0.97); box-shadow: 0 4px 16px rgba(27,77,62,0.15); }
+
+        .item-emoji { font-size: 1.6rem; margin-bottom: 0.1rem; }
+        .item-name  { font-weight: 800; font-size: 0.82rem; color: var(--dark-green); line-height: 1.2; }
+        .item-desc  {
+            font-size: 0.67rem; color: #999; line-height: 1.35;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+        }
+        .item-price {
+            margin-top: auto; padding-top: 0.35rem;
+            font-weight: 800; font-size: 0.82rem; color: var(--dark-green);
+        }
+        .item-price span {
+            background: var(--orange); color: var(--dark-green);
+            padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.75rem;
+        }
+
+        /* Cartes larges (pizza, burger gourmet) */
+        .item-card.wide {
+            grid-column: span 2;
+            flex-direction: row; align-items: center; gap: 0.8rem;
+        }
+        .item-card.wide .item-emoji { font-size: 2.2rem; flex-shrink: 0; }
+        .item-card.wide .item-name  { font-size: 0.9rem; }
+        .item-card.wide .item-desc  { -webkit-line-clamp: 3; font-size: 0.7rem; }
+
+        /* Badge NEW / POPULAR */
+        .item-badge {
+            display: inline-block; font-size: 0.6rem; font-weight: 800;
+            padding: 0.1rem 0.4rem; border-radius: 8px;
+            background: var(--red); color: #fff;
+            width: fit-content; letter-spacing: 0.5px;
+        }
+        .item-badge.pop { background: var(--orange); color: var(--dark-green); }
+
+        /* Tailles pizza */
+        .size-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.2rem; }
+        .size-chip {
+            font-size: 0.6rem; font-weight: 700; padding: 0.1rem 0.45rem;
+            border-radius: 8px; background: var(--cream); color: var(--dark-green);
+            border: 1px solid rgba(27,77,62,0.15);
+        }
+
+        /* Séparateur de sous-catégorie */
+        .sub-heading {
+            grid-column: 1 / -1;
+            font-size: 0.78rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--light-green);
+            padding: 0.6rem 0 0.2rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .sub-heading::after {
+            content: ''; flex: 1; height: 1px; background: rgba(64,145,108,0.2);
+        }
+
+        /* Footer menu */
+        .menu-footer {
+            background: var(--dark-green); color: var(--white);
+            text-align: center; padding: 2rem 5%;
+        }
+        .menu-footer p { font-size: 0.82rem; opacity: 0.7; }
+
+        @media (max-width: 500px) {
+            .cards-grid { grid-template-columns: 1fr 1fr; }
+            .item-card.wide { grid-column: span 2; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Nav -->
     <nav>
-        <a href="index.html" class="logo">
-            BEST <span>COOK</span>
-            <span class="halal-badge">HALAL</span>
-        </a>
+        <a href="index.html" class="logo">BEST <span>COOK</span><span class="halal-badge">HALAL</span></a>
         <ul class="nav-links">
             <li><a href="index.html">Accueil</a></li>
             <li><a href="index.html#nouveautes">Nouveautés</a></li>
@@ -1511,9 +1733,7 @@
             <li><a href="index.html#about">À propos</a></li>
             <li><a href="index.html#contact">Contact</a></li>
         </ul>
-        <div class="mobile-menu" id="burgerBtn" aria-label="Menu" role="button">
-            <span></span><span></span><span></span>
-        </div>
+        <div class="mobile-menu" id="burgerBtn"><span></span><span></span><span></span></div>
     </nav>
 
     <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
@@ -1525,222 +1745,283 @@
         <a href="index.html#contact">📞 Contact</a>
     </nav>
 
-    <!-- Header menu -->
-    <div class="menu-page-hero">
+    <!-- Hero -->
+    <div class="menu-hero">
         <h1>Notre Menu</h1>
-        <p>100% Halal · Fait avec passion · Paris 17ème</p>
-        <a href="index.html" class="back-btn">← Retour à l'accueil</a>
+        <p>100% Halal · Paris 17ème · Ouvert 7j/7 de 11h à minuit</p>
+        <a href="index.html" class="back-btn">← Retour</a>
     </div>
 
-        <!-- Menu -->
-    <section class="menu" id="menu">
-        <div class="container">
-            <h2 class="section-title">Notre Menu Complet</h2>
+    <!-- Tabs -->
+    <div class="menu-tabs">
+        <button class="menu-tab active" onclick="scrollToSection('sec-crousty')">🔥 Crousty</button>
+        <button class="menu-tab" onclick="scrollToSection('sec-pizza')">🍕 Pizzas</button>
+        <button class="menu-tab" onclick="scrollToSection('sec-burgers')">🍔 Burgers</button>
+        <button class="menu-tab" onclick="scrollToSection('sec-bowls')">🥗 Bowls</button>
+        <button class="menu-tab" onclick="scrollToSection('sec-pates')">🍝 Pâtes</button>
+        <button class="menu-tab" onclick="scrollToSection('sec-apetizers')">🍗 Apétizers</button>
+        <button class="menu-tab" onclick="scrollToSection('sec-boissons')">🥤 Boissons</button>
+    </div>
 
-            <div class="menu-category">
-                <h3 class="category-title">🔥 Nouveautés Crousty</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Riz Crousty M</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur riz parfumé</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Riz Crousty XL</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur riz + Skittles Sour offert</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Crousty M</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur pâtes fraîches</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Crousty XL</h3><span class="price-tag badge-new">NOUVEAU</span></div><div class="menu-card-content"><p>Poulet crousty sauce secrète sur pâtes + Skittles Original offert</p></div></div>
+    <!-- ═══════════ CROUSTY ═══════════ -->
+    <section class="menu-section" id="sec-crousty">
+        <h2 class="menu-section-title">🔥 Crousty Collection</h2>
+        <p class="menu-section-sub">Nos nouveautés exclusives — poulet crousty & sauce secrète</p>
+        <div class="cards-grid">
+            <div class="item-card wide">
+                <div class="item-emoji">🍚</div>
+                <div>
+                    <div class="item-badge">NEW</div>
+                    <div class="item-name">Riz Crousty</div>
+                    <div class="item-desc">Poulet crousty, sauce secrète sur riz parfumé</div>
+                    <div class="size-row"><span class="size-chip">Taille M</span><span class="size-chip">Taille XL + Skittles Sour</span></div>
                 </div>
             </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍕 Nos Pizzas 100% Mozza</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Margherita</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Basilic, Olives</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Regina</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Jambon, Champignons</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>4 Fromages</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Emmental, Gorgonzola, Chèvre</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Orientale</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Mozza, Merguez, Champignons, Œuf, Olives</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>La Best</h3><span class="price-tag badge-popular">POPULAIRE</span></div><div class="menu-card-content"><p>Mozza, Jambon, Merguez, Viande Hachée, Pepperoni, Lardons, Sauce Barbecue</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Tartiflette</h3><span class="price-tag">6€50 - 14€50</span></div><div class="menu-card-content"><p>Base Crème, Mozza, Lardons, Pomme de terre, Reblochons, Oignons</p><div class="size-options"><span class="size-badge">Junior 6€50</span><span class="size-badge">Senior 8€50</span><span class="size-badge">Mega 14€50</span></div></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍔 Classic Burgers</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Cheese Burger</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Royal Cheese</h3><span class="price-tag">5€60</span></div><div class="menu-card-content"><p>Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Giant</h3><span class="price-tag">5€50</span></div><div class="menu-card-content"><p>Steak, Sauce Giant, Cheddar, Salade, Oignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chicken Burger</h3><span class="price-tag">5€00</span></div><div class="menu-card-content"><p>Poulet Pané, Sauce Chicken, Salade</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Double Cheese</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>2 Steaks, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Big Mac</h3><span class="price-tag badge-popular">5€70</span></div><div class="menu-card-content"><p>2 Steaks, Sauce Big, Cheddar, Pickles, Salade, Oignons</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍔🍔 Menus Burgers Doubles</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Double Big Mac B6</h3><span class="price-tag">11€00</span></div><div class="menu-card-content"><p>2 burgers + Frites + Boisson</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Crousty + Cheese B4</h3><span class="price-tag">10€50</span></div><div class="menu-card-content"><p>2 burgers + Frites + Boisson</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Menu Enfant</h3><span class="price-tag">5€50</span></div><div class="menu-card-content"><p>Cheeseburger (ou 6 Nuggets) + Frites + Capri-Sun</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🌟 Burgers Gourmets & Premium</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pepper</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage de Chèvre, Sauce Jumbo Pepper</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Smoky</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage Raclette, Sauce Smoky</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Best</h3><span class="price-tag badge-popular">8€50</span></div><div class="menu-card-content"><p>Steak 120g, Bacon, Salade, Oignons Caramélisés, Cornichons, Emmental, Sauce Barbecue</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chicken Cajun</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Poulet Frit, Sauce Cajun, Salade, Tomate, Oignons, Pickles, Cheddar</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Beef Bacon</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Steak, Bacon, Sauce Maison, Salade, Tomate, Oignons, Pickles, Cheddar</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🥗 Bowls</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Orientale</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, V. Hachée, Merguez, Poivrons, Sauce Algérienne</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Burger</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, V. Hachée, Cheddar, Jambon, Oignons, Pickles, Sauce Biggy</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Savoyarde</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Cordon Bleu, Raclette, Lardons, Sauce Biggy</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Bollywood</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Poulet, Cheddar, Poivrons, Sauce Curry</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chèvre-Miel</h3><span class="price-tag">8€50</span></div><div class="menu-card-content"><p>Potato Pops, Poulet, Chèvre, Miel, Sauce Fromagère</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍝 Pâtes</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Bolognaise</h3><span class="price-tag">12€50</span></div><div class="menu-card-content"><p>Pâtes gratinées avec sauce bolognaise</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Forestière</h3><span class="price-tag">12€50</span></div><div class="menu-card-content"><p>Pâtes gratinées aux champignons</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Gratinées Saumon</h3><span class="price-tag">14€50</span></div><div class="menu-card-content"><p>Pâtes gratinées au saumon</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Bolo</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Pâtes fraîches sauce bolognaise</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Carbonara</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Pâtes fraîches sauce carbonara</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pâtes Fraîches Saumon</h3><span class="price-tag">9€50</span></div><div class="menu-card-content"><p>Pâtes fraîches au saumon</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🥬 Salades</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>César</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Salade César classique</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Niçoise</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Salade niçoise traditionnelle</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍗 Apéritizers</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Nuggets</h3><span class="price-tag">3€00 - 5€50</span></div><div class="menu-card-content"><p>x4 3€00 | x8 5€50</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Tenders</h3><span class="price-tag">3€80</span></div><div class="menu-card-content"><p>x3 Tenders croustillants</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Pop'in</h3><span class="price-tag">3€00 - 6€50</span></div><div class="menu-card-content"><p>x4 3€00 | x8 6€50</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chili Cheese</h3><span class="price-tag">3€50 - 6€50</span></div><div class="menu-card-content"><p>x4 3€50 | x8 6€50</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Chili Camembert</h3><span class="price-tag">3€50 - 6€50</span></div><div class="menu-card-content"><p>x4 3€50 | x8 6€50</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Box Mixte</h3><span class="price-tag">10€00</span></div><div class="menu-card-content"><p>4 Chili Cheese + 4 Chili Camembert + 4 Pop'in + 4 Nuggets</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍟 Frites & Wraps</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Frites Simples</h3><span class="price-tag">2€50</span></div><div class="menu-card-content"><p>Supplément Bacon +2€00</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Frites Cajun</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Supplément Cheddar +1€00</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Potatoes Pop</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Potatoes croustillantes</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Chicken</h3><span class="price-tag">6€50</span></div><div class="menu-card-content"><p>Wrap au poulet</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Bœuf</h3><span class="price-tag">6€50</span></div><div class="menu-card-content"><p>Wrap au bœuf</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Wrap Mixed</h3><span class="price-tag">7€50</span></div><div class="menu-card-content"><p>Mix Chicken + Bœuf</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🥤 Milkshakes & Smoothies</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Milk Shake</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>Base: Vanille ou Fraise<br>Coulis: Caramel, Choco, Fraise (+0€50)<br>Gourmandises: Kinder, Oreo, Lotus (+1€00)</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Smoothie</h3><span class="price-tag">4€50</span></div><div class="menu-card-content"><p>Base: Jus de Mangue ou Ananas<br>Fruits: Banane, Fraise, Ananas, Mangue</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🍨 Desserts</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Tarte Daim</h3><span class="price-tag">2€50</span></div><div class="menu-card-content"><p>Tarte au chocolat Daim</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Manguier</h3><span class="price-tag">3€50</span></div><div class="menu-card-content"><p>Dessert mangue</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Fraisier</h3><span class="price-tag">3€50</span></div><div class="menu-card-content"><p>Dessert fraise</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Oreo</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Oreo</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Nutella</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Nutella</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Daim</h3><span class="price-tag">3€00</span></div><div class="menu-card-content"><p>Dessert Daim</p></div></div>
-                </div>
-            </div>
-
-            <div class="menu-category">
-                <h3 class="category-title">🧃 Boissons</h3>
-                <div class="menu-grid">
-                    <div class="menu-card"><div class="menu-card-header"><h3>Boissons 33cl</h3><span class="price-tag">1€50</span></div><div class="menu-card-content"><p>Coca, Oasis, Orangina, Fanta, Sprite, 7UP, Lipton...</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Perrier 33cl</h3><span class="price-tag">1€50</span></div><div class="menu-card-content"><p>Eau gazeuse</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Eau 55cl</h3><span class="price-tag">1€00</span></div><div class="menu-card-content"><p>Eau plate</p></div></div>
-                    <div class="menu-card"><div class="menu-card-header"><h3>Capri-Sun</h3><span class="price-tag">1€00</span></div><div class="menu-card-content"><p>Jus pour enfant</p></div></div>
+            <div class="item-card wide">
+                <div class="item-emoji">🍝</div>
+                <div>
+                    <div class="item-badge">NEW</div>
+                    <div class="item-name">Pâtes Crousty</div>
+                    <div class="item-desc">Poulet crousty, sauce secrète sur pâtes fraîches</div>
+                    <div class="size-row"><span class="size-chip">Taille M</span><span class="size-chip">Taille XL + Skittles Original</span></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ═══════════ PIZZAS ═══════════ -->
+    <section class="menu-section" id="sec-pizza">
+        <h2 class="menu-section-title">🍕 Pizzas 100% Mozza</h2>
+        <p class="menu-section-sub">Junior 6€50 · Senior 8€50 · Mega 14€50</p>
+        <div class="cards-grid">
+            <div class="sub-heading">Base Tomate</div>
+            <div class="item-card"><div class="item-emoji">🍅</div><div class="item-name">Margherita</div><div class="item-desc">Mozza, Basilic, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍕</div><div class="item-name">Regina</div><div class="item-desc">Mozza, Jambon, Champignons</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍕</div><div class="item-name">Campionne</div><div class="item-desc">Mozza, Viande Hachée, Champignons, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🧀</div><div class="item-name">4 Fromages</div><div class="item-desc">Mozza, Emmental, Gorgonzola, Chèvre</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🌶️</div><div class="item-name">Orientale</div><div class="item-desc">Mozza, Merguez, Champignons, Œuf, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍕</div><div class="item-name">Country</div><div class="item-desc">Mozza, Poulet Tandoori, Pommes de Terre, Oignons, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🔥</div><div class="item-name">La Best</div><div class="item-badge pop">POPULAIRE</div><div class="item-desc">Mozza, Jambon, Merguez, V. Hachée, Pepperoni, Lardons, Sauce BBQ</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🌶️</div><div class="item-name">Indienne</div><div class="item-desc">Mozza, V. Hachée, Cheddar, Chorizo, Piment</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🦞</div><div class="item-name">Fruits de Mer</div><div class="item-desc">Mozza, Fruits de Mer, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🐟</div><div class="item-name">Napolitaine</div><div class="item-desc">Mozza, Anchois, Câpres, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍅</div><div class="item-name">Tomata</div><div class="item-desc">Mozza, Thon, Olives, Tomates cerises</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🥬</div><div class="item-name">Catania</div><div class="item-desc">Mozza, Courgette, Aubergine, Champignons, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🥙</div><div class="item-name">Kebab</div><div class="item-desc">Mozza, Kebab, Poivrons</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍕</div><div class="item-name">4 Saisons</div><div class="item-desc">Mozza, Jambon, Champignons, Poivrons, Cœur d'Artichaut, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🔥</div><div class="item-name">Canibale</div><div class="item-desc">Mozza, V. Hachée, Poulet, Poivrons</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍍</div><div class="item-name">Hawaïenne</div><div class="item-desc">Mozza, Jambon, Ananas</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🌿</div><div class="item-name">Veggie</div><div class="item-desc">Mozza, Tomates cerises, Oignons, Poivrons, Champignons, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card wide"><div class="item-emoji">🍕</div><div><div class="item-name">Calzone Pêcheur</div><div class="item-desc">Base Tomate, Mozza, Thon, Œuf, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div></div>
+            <div class="item-card wide"><div class="item-emoji">🍕</div><div><div class="item-name">Calzone Best</div><div class="item-desc">Base Tomate, Mozza, V. Hachée, Bacon, Pommes de Terre, Poivrons</div><div class="item-price"><span>6€50–14€50</span></div></div></div>
 
+            <div class="sub-heading">Base Crème Fraîche</div>
+            <div class="item-card"><div class="item-emoji">🥔</div><div class="item-name">Tartiflette</div><div class="item-desc">Mozza, Lardons, Pomme de terre, Reblochons, Oignons</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🐟</div><div class="item-name">Pacifico</div><div class="item-desc">Mozza, Saumon, Aneth</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍗</div><div class="item-name">Fermière</div><div class="item-desc">Mozza, Poulet Fumé, Pommes de Terre</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍯</div><div class="item-name">Chèvre Miel</div><div class="item-desc">Mozza, Chèvre, Touche de Miel</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🐃</div><div class="item-name">Buffalo</div><div class="item-desc">Mozza, Cheddar, V. Hachée, Champignons, Chorizo</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">👑</div><div class="item-name">La Royale</div><div class="item-desc">Mozza, Poulet, Poivrons, Champignons</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🇮🇹</div><div class="item-name">Milano</div><div class="item-desc">Mozza, Jambon, Chorizo, Œuf</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🏔️</div><div class="item-name">Savoyarde</div><div class="item-desc">Mozza, Poulet, Raclette, Lardons, Oignons</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card wide"><div class="item-emoji">🍗</div><div><div class="item-name">Calzone Poulet</div><div class="item-desc">Crème Fraîche, Mozza, Poulet, Pommes de Terre, Miel</div><div class="item-price"><span>6€50–14€50</span></div></div></div>
+            <div class="item-card wide"><div class="item-emoji">🍕</div><div><div class="item-name">Calzone Fermière</div><div class="item-desc">Crème Fraîche, Mozza, Poulet, Lardons, Pommes de Terre</div><div class="item-price"><span>6€50–14€50</span></div></div></div>
+            <div class="item-card wide"><div class="item-emoji">🏔️</div><div><div class="item-name">Calzone Savoyarde</div><div class="item-desc">Crème Fraîche, Mozza, Poulet, Pommes de Terre, Lardons, Reblochon</div><div class="item-price"><span>6€50–14€50</span></div></div></div>
+
+            <div class="sub-heading">Spéciales</div>
+            <div class="item-card"><div class="item-emoji">🍛</div><div class="item-name">Chicken Curry</div><div class="item-desc">Mozza, Poulet Curry, Oignons, Poivrons</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🌿</div><div class="item-name">Thaï</div><div class="item-desc">Mozza, Poulet Tandoori, Poivrons, Oignons, Olives</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🌶️</div><div class="item-name">Algérienne</div><div class="item-desc">Mozza, Poulet Tandoori, Poivrons, Oignons, Pepperoni</div><div class="item-price"><span>6€50–14€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍗</div><div class="item-name">3 Poulets</div><div class="item-desc">Mozza, Poulet Curry, Poulet Tandoori, Poivrons, Oignons</div><div class="item-price"><span>6€50–14€50</span></div></div>
+        </div>
+    </section>
+
+    <!-- ═══════════ BURGERS ═══════════ -->
+    <section class="menu-section" id="sec-burgers">
+        <h2 class="menu-section-title">🍔 Burgers</h2>
+        <p class="menu-section-sub">Classic, Doubles, Gourmets & Premium</p>
+        <div class="cards-grid">
+            <div class="sub-heading">Classic Burgers</div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-name">Cheese Burger</div><div class="item-desc">Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</div><div class="item-price"><span>3€00</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-name">Royal Cheese</div><div class="item-desc">Steak, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</div><div class="item-price"><span>5€60</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-name">Giant</div><div class="item-desc">Steak, Sauce Giant, Cheddar, Salade, Oignons</div><div class="item-price"><span>5€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍗</div><div class="item-name">Chicken Burger</div><div class="item-desc">Poulet Pané, Sauce Chicken, Salade</div><div class="item-price"><span>5€00</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-name">Double Cheese</div><div class="item-desc">2 Steaks, Cheddar, Ketchup, Cornichons, Moutarde, Oignons</div><div class="item-price"><span>4€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-name">Tasty Steak</div><div class="item-desc">Steak, Emmental, Sauce Tasty, Salade, Tomate, Oignons</div><div class="item-price"><span>6€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-badge pop">POPULAIRE</div><div class="item-name">Big Mac</div><div class="item-desc">2 Steaks, Sauce Big, Cheddar, Pickles, Salade, Oignons</div><div class="item-price"><span>5€70</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-name">Whoopy</div><div class="item-desc">Steak, Mayonnaise, Cheddar, Pickles, Salade, Tomate, Oignons</div><div class="item-price"><span>6€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-name">280</div><div class="item-desc">Steak, Sauce Chicken, Ketchup, Tomate, Oignons, Emmental, Cheddar</div><div class="item-price"><span>6€30</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍗</div><div class="item-name">Long Chicken</div><div class="item-desc">Poulet Pané, Cheddar, Emmental, Salade, Sauce Chicken Bacon, Oignons Crispy</div><div class="item-price"><span>5€80</span></div></div>
+            <div class="item-card"><div class="item-emoji">🐟</div><div class="item-name">Fish</div><div class="item-desc">Poisson Pané, Cheddar, Sauce Fish</div><div class="item-price"><span>4€30</span></div></div>
+            <div class="item-card"><div class="item-emoji">🥓</div><div class="item-name">Long Bacon</div><div class="item-desc">Steak, Bacon, Cheddar, Emmental, Sauce Chicken, Oignons Crispy</div><div class="item-price"><span>5€80</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍗</div><div class="item-name">Crousty</div><div class="item-badge">NEW</div><div class="item-desc">2 Tenders, Galette P.D.T., Emmental, Sauce Chicken, Ketchup, Salade</div><div class="item-price"><span>6€00</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-name">Chicken Beef</div><div class="item-desc">Steak, Poulet Pané, Sauce Big, Cheddar, Pickles, Salade, Oignons</div><div class="item-price"><span>6€50</span></div></div>
+
+            <div class="sub-heading">Menus Doubles</div>
+            <div class="item-card wide"><div class="item-emoji">🍔</div><div><div class="item-name">Double Big Mac B6</div><div class="item-desc">2 burgers + Frites + Boisson</div><div class="item-price"><span>11€00</span></div></div></div>
+            <div class="item-card wide"><div class="item-emoji">🍔</div><div><div class="item-name">Crousty + Cheese B4</div><div class="item-desc">2 burgers + Frites + Boisson</div><div class="item-price"><span>10€50</span></div></div></div>
+            <div class="item-card wide"><div class="item-emoji">🍔</div><div><div class="item-name">Big Mac + Giant B3</div><div class="item-desc">2 burgers + Frites + Boisson</div><div class="item-price"><span>11€00</span></div></div></div>
+            <div class="item-card wide"><div class="item-emoji">🍔</div><div><div class="item-name">Chicken + Big Mac B2</div><div class="item-desc">2 burgers + Frites + Boisson</div><div class="item-price"><span>11€00</span></div></div></div>
+            <div class="item-card wide"><div class="item-emoji">🍔</div><div><div class="item-name">Double Giant B7</div><div class="item-desc">2 burgers + Frites + Boisson</div><div class="item-price"><span>11€00</span></div></div></div>
+            <div class="item-card wide"><div class="item-emoji">🎈</div><div><div class="item-name">Menu Enfant</div><div class="item-desc">Cheeseburger (ou 6 Nuggets) + Frites + Capri-Sun</div><div class="item-price"><span>5€50</span></div></div></div>
+
+            <div class="sub-heading">Burgers Gourmets</div>
+            <div class="item-card"><div class="item-emoji">🌶️</div><div class="item-name">Pepper</div><div class="item-desc">Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage Chèvre, Sauce Jumbo Pepper</div><div class="item-price"><span>8€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🔥</div><div class="item-name">Smoky</div><div class="item-desc">Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage Raclette, Sauce Smoky</div><div class="item-price"><span>8€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🥩</div><div class="item-name">Grill</div><div class="item-desc">Steak 120g, Salade, Oignons Caramélisés, Cornichon, Bacon, Fromage Reblochon, Sauce Magic Grill</div><div class="item-price"><span>8€50</span></div></div>
+
+            <div class="sub-heading">Burgers Premium</div>
+            <div class="item-card"><div class="item-emoji">🥩</div><div class="item-badge pop">POPULAIRE</div><div class="item-name">Best</div><div class="item-desc">Steak 120g, Bacon, Salade, Oignons Caramélisés, Cornichons, Emmental, Sauce Barbecue</div><div class="item-price"><span>8€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🌶️</div><div class="item-name">Chicken Cajun</div><div class="item-desc">Poulet Frit, Sauce Cajun, Salade, Tomate, Oignons, Pickles, Cheddar</div><div class="item-price"><span>9€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🥓</div><div class="item-name">Beef Bacon</div><div class="item-desc">Steak, Bacon, Sauce Maison, Salade, Tomate, Oignons, Pickles, Cheddar</div><div class="item-price"><span>9€50</span></div></div>
+        </div>
+    </section>
+
+    <!-- ═══════════ BOWLS ═══════════ -->
+    <section class="menu-section" id="sec-bowls">
+        <h2 class="menu-section-title">🥗 Bowls & Salades</h2>
+        <p class="menu-section-sub">Base Potato Pops · Généreux et savoureux</p>
+        <div class="cards-grid">
+            <div class="sub-heading">Bowls — 8€50</div>
+            <div class="item-card"><div class="item-emoji">🌶️</div><div class="item-name">Orientale</div><div class="item-desc">Potato Pops, V. Hachée, Merguez, Poivrons, Sauce Algérienne</div><div class="item-price"><span>8€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍔</div><div class="item-name">Burger</div><div class="item-desc">Potato Pops, V. Hachée, Cheddar, Jambon, Oignons, Pickles, Sauce Biggy</div><div class="item-price"><span>8€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🏔️</div><div class="item-name">Savoyarde</div><div class="item-desc">Potato Pops, Cordon Bleu, Raclette, Lardons, Sauce Biggy</div><div class="item-price"><span>8€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍛</div><div class="item-name">Bollywood</div><div class="item-desc">Potato Pops, Poulet, Cheddar, Poivrons, Sauce Curry</div><div class="item-price"><span>8€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍯</div><div class="item-name">Chèvre-Miel</div><div class="item-desc">Potato Pops, Poulet, Chèvre, Miel, Sauce Fromagère</div><div class="item-price"><span>8€50</span></div></div>
+            <div class="sub-heading">Salades — 7€50</div>
+            <div class="item-card"><div class="item-emoji">🥗</div><div class="item-name">César</div><div class="item-desc">Salade César classique</div><div class="item-price"><span>7€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🥗</div><div class="item-name">Niçoise</div><div class="item-desc">Salade niçoise traditionnelle</div><div class="item-price"><span>7€50</span></div></div>
+        </div>
+    </section>
+
+    <!-- ═══════════ PÂTES ═══════════ -->
+    <section class="menu-section" id="sec-pates">
+        <h2 class="menu-section-title">🍝 Pâtes & Wraps</h2>
+        <p class="menu-section-sub">Pâtes gratinées, pâtes fraîches & wraps</p>
+        <div class="cards-grid">
+            <div class="sub-heading">Pâtes Gratinées</div>
+            <div class="item-card"><div class="item-emoji">🍝</div><div class="item-name">Bolognaise</div><div class="item-desc">Pâtes gratinées sauce bolognaise</div><div class="item-price"><span>12€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍄</div><div class="item-name">Forestière</div><div class="item-desc">Pâtes gratinées aux champignons</div><div class="item-price"><span>12€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🐟</div><div class="item-name">Saumon</div><div class="item-desc">Pâtes gratinées au saumon</div><div class="item-price"><span>14€50</span></div></div>
+            <div class="sub-heading">Pâtes Fraîches</div>
+            <div class="item-card"><div class="item-emoji">🍝</div><div class="item-name">Bolo</div><div class="item-desc">Pâtes fraîches sauce bolognaise</div><div class="item-price"><span>7€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🥚</div><div class="item-name">Carbonara</div><div class="item-desc">Pâtes fraîches sauce carbonara</div><div class="item-price"><span>7€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🐟</div><div class="item-name">Saumon</div><div class="item-desc">Pâtes fraîches au saumon</div><div class="item-price"><span>9€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍄</div><div class="item-name">Forestières</div><div class="item-desc">Pâtes fraîches aux champignons</div><div class="item-price"><span>7€50</span></div></div>
+            <div class="sub-heading">Wraps</div>
+            <div class="item-card"><div class="item-emoji">🌯</div><div class="item-name">Wrap Chicken</div><div class="item-desc">Wrap au poulet</div><div class="item-price"><span>6€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🌯</div><div class="item-name">Wrap Bœuf</div><div class="item-desc">Wrap au bœuf</div><div class="item-price"><span>6€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🌯</div><div class="item-name">Wrap Mixed</div><div class="item-desc">Mix Chicken + Bœuf</div><div class="item-price"><span>7€50</span></div></div>
+        </div>
+    </section>
+
+    <!-- ═══════════ APÉTIZERS ═══════════ -->
+    <section class="menu-section" id="sec-apetizers">
+        <h2 class="menu-section-title">🍗 Apétizers & Frites</h2>
+        <p class="menu-section-sub">Pour partager ou grignoter</p>
+        <div class="cards-grid">
+            <div class="sub-heading">Apétizers</div>
+            <div class="item-card"><div class="item-emoji">🍗</div><div class="item-name">Nuggets</div><div class="item-desc">Nuggets croustillants</div><div class="item-price"><span>x4 3€ · x8 5€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍗</div><div class="item-name">Tenders</div><div class="item-desc">Tenders croustillants x3</div><div class="item-price"><span>4€80</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍿</div><div class="item-name">Pop'in</div><div class="item-desc">Bouchées de poulet croustillantes</div><div class="item-price"><span>x4 3€ · x8 6€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🧀</div><div class="item-name">Chili Cheese</div><div class="item-desc">Bouchées chili fromage</div><div class="item-price"><span>x4 3€50 · x8 6€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🧀</div><div class="item-name">Chili Camembert</div><div class="item-desc">Bouchées chili camembert</div><div class="item-price"><span>x4 3€50 · x8 6€50</span></div></div>
+            <div class="item-card wide"><div class="item-emoji">📦</div><div><div class="item-name">Box Mixte</div><div class="item-desc">4 Chili Cheese + 4 Chili Camembert + 4 Pop'in + 4 Nuggets</div><div class="item-price"><span>10€00</span></div></div></div>
+            <div class="sub-heading">Frites</div>
+            <div class="item-card"><div class="item-emoji">🍟</div><div class="item-name">Frites Simples</div><div class="item-desc">Supplément Bacon +2€</div><div class="item-price"><span>2€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🌶️</div><div class="item-name">Frites Cajun</div><div class="item-desc">Supplément Cheddar +1€</div><div class="item-price"><span>3€00</span></div></div>
+            <div class="item-card"><div class="item-emoji">🥔</div><div class="item-name">Potatoes Pop</div><div class="item-desc">Potatoes croustillantes</div><div class="item-price"><span>3€00</span></div></div>
+        </div>
+    </section>
+
+    <!-- ═══════════ BOISSONS ═══════════ -->
+    <section class="menu-section" id="sec-boissons">
+        <h2 class="menu-section-title">🥤 Boissons & Desserts</h2>
+        <p class="menu-section-sub">Milkshakes, smoothies, desserts & boissons</p>
+        <div class="cards-grid">
+            <div class="sub-heading">Milkshakes — 4€50</div>
+            <div class="item-card wide"><div class="item-emoji">🥤</div><div><div class="item-name">Milk Shake</div><div class="item-desc">Base Vanille ou Fraise · Coulis Caramel/Choco/Fraise +0€50 · Kinder/Oreo/Lotus +1€</div><div class="item-price"><span>4€50</span></div></div></div>
+            <div class="sub-heading">Smoothies — 4€50</div>
+            <div class="item-card wide"><div class="item-emoji">🥭</div><div><div class="item-name">Smoothie</div><div class="item-desc">Base Jus Mangue ou Ananas · Fruits : Banane, Fraise, Ananas, Mangue au choix</div><div class="item-price"><span>4€50</span></div></div></div>
+            <div class="sub-heading">Desserts</div>
+            <div class="item-card"><div class="item-emoji">🍫</div><div class="item-name">Tarte Daim</div><div class="item-price"><span>2€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🥭</div><div class="item-name">Manguier</div><div class="item-price"><span>3€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍓</div><div class="item-name">Fraisier</div><div class="item-price"><span>3€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍪</div><div class="item-name">Oreo</div><div class="item-price"><span>3€00</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍫</div><div class="item-name">Nutella</div><div class="item-price"><span>3€00</span></div></div>
+            <div class="item-card"><div class="item-emoji">🍬</div><div class="item-name">Daim</div><div class="item-price"><span>3€00</span></div></div>
+            <div class="sub-heading">Boissons</div>
+            <div class="item-card"><div class="item-emoji">🥤</div><div class="item-name">Boisson 33cl</div><div class="item-desc">Coca, Oasis, Orangina, Fanta, Sprite, 7UP, Lipton...</div><div class="item-price"><span>1€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">💧</div><div class="item-name">Perrier 33cl</div><div class="item-price"><span>1€50</span></div></div>
+            <div class="item-card"><div class="item-emoji">💧</div><div class="item-name">Eau 55cl</div><div class="item-price"><span>1€00</span></div></div>
+            <div class="item-card"><div class="item-emoji">🧃</div><div class="item-name">Capri-Sun</div><div class="item-price"><span>1€00</span></div></div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer>
+    <div class="menu-footer">
         <div class="footer-logo">BEST COOK</div>
-        <p>145 Avenue de Saint Ouen, 75017 Paris | 01.40.79.19.23</p>
-        <p style="margin-top:0.4rem;opacity:0.7;">100% Halal · Ouvert tous les jours de 11h00 à minuit</p>
-        <p style="margin-top:0.8rem;font-size:0.75rem;opacity:0.5;">&copy; 2026 Best Cook</p>
-    </footer>
+        <p>145 Avenue de Saint Ouen, 75017 Paris · 01.40.79.19.23</p>
+        <p style="margin-top:0.4rem;">100% Halal · 7j/7 de 11h00 à Minuit</p>
+    </div>
+
+    <!-- Modal navigation -->
+    <div class="nav-modal-overlay" id="navModalOverlay" onclick="closeNavModal(event)">
+        <div class="nav-modal">
+            <p class="nav-modal-title">📍 Ouvrir dans...</p>
+            <p class="nav-modal-addr">145 Avenue de Saint Ouen, 75017 Paris</p>
+            <div class="nav-modal-btns">
+                <a class="nav-btn waze" href="https://waze.com/ul?q=145+Avenue+de+Saint+Ouen+75017+Paris" target="_blank" rel="noopener" onclick="closeNavModalDirect()"><span class="nav-btn-icon">🗺️</span> Waze</a>
+                <a class="nav-btn gmaps" href="https://www.google.com/maps/dir/?api=1&destination=145+Avenue+de+Saint+Ouen+75017+Paris" target="_blank" rel="noopener" onclick="closeNavModalDirect()"><span class="nav-btn-icon">📍</span> Google Maps</a>
+                <a class="nav-btn apple" href="https://maps.apple.com/?daddr=145+Avenue+de+Saint+Ouen+75017+Paris&dirflg=d" target="_blank" rel="noopener" onclick="closeNavModalDirect()"><span class="nav-btn-icon">🍎</span> Plans (Apple Maps)</a>
+            </div>
+            <button class="nav-modal-cancel" onclick="closeNavModalDirect()">Annuler</button>
+        </div>
+    </div>
 
     <script>
+        // Nav mobile
         const burgerBtn = document.getElementById('burgerBtn');
         const mobileNav = document.getElementById('mobileNav');
         const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-
-        function openMobileMenu() {
-            burgerBtn.classList.add('open');
-            mobileNav.classList.add('open');
-            mobileNavOverlay.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMobileMenu() {
-            burgerBtn.classList.remove('open');
-            mobileNav.classList.remove('open');
-            mobileNavOverlay.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        burgerBtn.addEventListener('click', () => {
-            mobileNav.classList.contains('open') ? closeMobileMenu() : openMobileMenu();
-        });
-
-        document.querySelectorAll('#mobileNav a').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
+        function openMobileMenu() { burgerBtn.classList.add('open'); mobileNav.classList.add('open'); mobileNavOverlay.classList.add('open'); document.body.style.overflow='hidden'; }
+        function closeMobileMenu() { burgerBtn.classList.remove('open'); mobileNav.classList.remove('open'); mobileNavOverlay.classList.remove('open'); document.body.style.overflow=''; }
+        burgerBtn.addEventListener('click', () => mobileNav.classList.contains('open') ? closeMobileMenu() : openMobileMenu());
+        document.querySelectorAll('#mobileNav a').forEach(l => l.addEventListener('click', closeMobileMenu));
         mobileNavOverlay.addEventListener('click', closeMobileMenu);
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    const top = target.getBoundingClientRect().top + window.pageYOffset - 65;
-                    window.scrollTo({ top, behavior: 'smooth' });
-                }
-            });
-        });
+        // Modal maps
+        function openNavModal() { document.getElementById('navModalOverlay').classList.add('open'); document.body.style.overflow='hidden'; }
+        function closeNavModalDirect() { document.getElementById('navModalOverlay').classList.remove('open'); document.body.style.overflow=''; }
+        function closeNavModal(e) { if (e.target===document.getElementById('navModalOverlay')) closeNavModalDirect(); }
 
-        // Scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target);
-                }
+        // Tabs
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const top = el.getBoundingClientRect().top + window.pageYOffset - 110;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+
+        // Tab actif au scroll
+        const sections = ['sec-crousty','sec-pizza','sec-burgers','sec-bowls','sec-pates','sec-apetizers','sec-boissons'];
+        const tabs = document.querySelectorAll('.menu-tab');
+        window.addEventListener('scroll', () => {
+            let current = sections[0];
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top < 140) current = id;
             });
-        }, { threshold: 0.08 });
-        document.querySelectorAll('.menu-card').forEach(el => {
-            el.classList.add('scroll-reveal');
-            observer.observe(el);
+            tabs.forEach((t, i) => t.classList.toggle('active', sections[i] === current));
+        }, { passive: true });
+
+        // Reveal au scroll
+        const revealObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); } });
+        }, { threshold: 0.06 });
+        document.querySelectorAll('.item-card').forEach((c, i) => {
+            c.style.transitionDelay = (i % 6) * 0.05 + 's';
+            revealObs.observe(c);
         });
     </script>
 </body>
