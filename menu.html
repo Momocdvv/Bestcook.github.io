@@ -1575,6 +1575,17 @@
             .bottom-banner-sep { width: 100%; height: 1px; }
             .bottom-banner-item { padding: 0 0.5rem; min-width: 0; width: 100%; }
         }
+
+        /* Badge Halal footer */
+        .halal-footer-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+            margin-left: 0.3rem;
+        }
+        .halal-footer-badge:hover { opacity: 1; }
     </style>
     <style>
         /* ── PAGE MENU ── */
@@ -1961,6 +1972,15 @@
     <!-- Footer -->
     <div class="menu-footer">
         <div class="footer-logo">BEST COOK</div>
+        <div class="halal-footer-badge" aria-label="Halal certifié" style="margin:0.8rem auto;">
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="21" stroke="rgba(244,162,97,0.6)" stroke-width="1.5"/>
+                <circle cx="22" cy="22" r="17" fill="rgba(244,162,97,0.12)"/>
+                <path d="M25 13.5a9 9 0 1 0 0 17 7 7 0 1 1 0-17z" fill="#F4A261"/>
+                <polygon points="30,13 30.9,15.7 33.8,15.7 31.5,17.4 32.4,20.1 30,18.4 27.6,20.1 28.5,17.4 26.2,15.7 29.1,15.7" fill="#F4A261"/>
+                <text x="22" y="36" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="5.5" font-weight="800" fill="#F4A261" letter-spacing="1">HALAL</text>
+            </svg>
+        </div>
         <p>145 Avenue de Saint Ouen, 75017 Paris · 01.40.79.19.23</p>
         <p style="margin-top:0.4rem;">100% Halal · 7j/7 de 11h00 à Minuit</p>
     </div>
